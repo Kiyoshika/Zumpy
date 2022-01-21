@@ -71,8 +71,35 @@ void arr_fill(array* arr, void* value)
 {
     // only do anything if data is non-empty
     if (arr->data)
-    {
         for (size_t i = 0; i < arr->total_size; ++i)
             memcpy((char*)(arr->data + i*arr->type_size), value, arr->type_size);
+}
+
+void arr_set(array* arr, size_t* index, void* value)
+{
+    // only do anything if data is non-empty
+    if (arr->data)
+    {
+        int t_shape_size = arr->shape_size;
+        memcpy(((char*)(arr->data + arr->type_size*calculate_offset(arr, index, t_shape_size))), value, arr->type_size);
     }
+}
+
+float arr_sum(array* arr)
+{
+    float sum = 0.0;
+    switch (arr->dtype)
+    {
+        case INT32:
+            for (size_t i = 0; i < arr->total_size; ++i)
+                sum += *(int32_t*)((char*)(arr->data + arr->type_size*i));
+            return sum;
+            break;
+        case FLOAT:
+            for (size_t i = 0; i < arr->total_size; ++i)
+                sum += *(float*)((char*)(arr->data + arr->type_size*i));
+            return sum;
+            break;
+    }
+    return sum; // 0.0
 }

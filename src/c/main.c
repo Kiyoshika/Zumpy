@@ -4,15 +4,14 @@ int main()
 {
     array myarr;
 
-    size_t shape[] = {3, 3, 3};
-    arr_init(&myarr, shape, 3, INT32);
+    size_t shape[] = {3, 3};
+    arr_init(&myarr, shape, 2, INT32);
 
+    // fill array with values of 10
     int32_t val = 10;
     arr_fill(&myarr, &val);
 
-    // specify the index to access within the "3D" array
-    size_t index[] = { 2, 1, 1 };
-    printf("%d\n", *(int32_t*)arr_at(&myarr, index));
+    printf("%f\n", arr_sum(&myarr)); // 90.0
 
     arr_free(&myarr);
     return 0;

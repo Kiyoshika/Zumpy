@@ -87,6 +87,39 @@ void* arr_at(array* arr, size_t* index);
 
 
 /**
+ * Set a single value within the array.
+ * @param arr Reference (pointer) to an array struct.
+ * @param index Index to set the value at.
+ * @param value Value to set.
+ * @code
+ * #include "zumpy.h"
+ *
+ * // ... other code
+ *
+ * array myarr;
+ *
+ * size_t shape[] = {3, 3, 3};
+ * arr_init(&myarr, shape, 3, INT32);
+ *
+ * // fill array with values of 10
+ * int32_t val = 10;
+ * arr_fill(&myarr, &val);
+ *
+ * // set index 2,1,1 to 20
+ * size_t index[] = { 2, 1, 1 };
+ * val = 20;
+ * arr_set(&myarr, index, &val);
+ *
+ * printf("%d\n", *(int32_t*)arr_at(&myarr, index)); // 20
+ *
+ * arr_free(&myarr);
+ * @endcode
+ */
+void arr_set(array* arr, size_t* index, void* value);
+
+
+
+/**
  * Fill an array with a constant value.
  * @param arr Reference (pointer) to an array struct.
  * @param value Value to fill the array with.
@@ -140,5 +173,43 @@ void* arr_at(array* arr, size_t* index);
  * @endcode
  */
 void arr_fill(array* arr, void* value);
+
+
+
+/**
+ * Sum all elements in an array.
+ * @note For multi-dimensional arrays this will sum ALL cells. If you want to sum a specific row or column, check arr_sum_row(array*) and arr_sum_column(array*).
+ * @see arr_sum_row(array*)
+ * @see arr_sum_column(array*)
+ * @param arr
+ * @return The sum of all cells as a float.
+ * @code
+ * #include "zumpy.h"
+ *
+ * // ... other code
+ *
+ * array myarr;
+ *
+ * size_t shape[] = {3, 3};
+ * arr_init(&myarr, shape, 2, INT32);
+ *
+ * // fill array with values of 10
+ * int32_t val = 10;
+ * arr_fill(&myarr, &val);
+ *
+ * printf("%f\n", arr_sum(&myarr)); // 90.0
+ *
+ * arr_free(&myarr);
+ * @endcode
+ */
+float arr_sum(array* arr);
+
+
+
+float arr_sum_row(array* arr, size_t row_index);
+
+
+
+float arr_sum_column(array* arr, size_t col_index);
 
 #endif //ZUMPY_ZUMPY_H

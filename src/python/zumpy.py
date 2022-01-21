@@ -25,8 +25,14 @@ _libZumpy.arr_free.restype = None
 _libZumpy.arr_at.argtypes = [POINTER(array_wrapper), POINTER(c_size_t)]
 _libZumpy.arr_at.restype = c_void_p
 
+_libZumpy.arr_set.argtypes = [POINTER(array_wrapper), POINTER(c_size_t), c_void_p]
+_libZumpy.arr_set.restype = None
+
 _libZumpy.arr_fill.argtypes = [POINTER(array_wrapper), c_void_p]
 _libZumpy.arr_fill.restype = None
+
+_libZumpy.arr_sum.argtypes = [POINTER(array_wrapper)]
+_libZumpy.arr_sum.restype = c_float
 
 class array():
     def _get_type_enum(self, dtype):
@@ -72,6 +78,20 @@ class array():
 
         return None
 
+    def __getitem__(self, idx):
+        return self.at(idx)
+
+    def set(self, idx, value):
+        idx_arr = (c_size_t * len(idx))(*idx)
+
+        if self.dtype == 'int32':
+            _libZumpy.arr_set(byref(self.arr), idx_arr, byref(c_int32(value)))
+        elif self.dtype == 'float':
+            _libZumpy.arr_set(byref(self.arr), idx_arr, byref(c_float(value)))
+
+    def __setitem__(self, idx, value):
+        self.set(idx, value)
+
     def fill(self, value):
         val_ptr = None
         if self.dtype == 'int32':
@@ -79,3 +99,6 @@ class array():
         elif self.dtype == 'float':
             val_ptr = cast(byref(c_float(value)), c_void_p)
         _libZumpy.arr_fill(byref(self.arr), val_ptr)
+
+    def sum(self):
+        return _libZumpy.arr_sum(byref(self.arr))
