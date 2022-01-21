@@ -3,8 +3,6 @@
 // offset calculation which dynamically scales with N-dimensions
 size_t calculate_offset(array* arr, size_t* index, int shape_size)
 {
-    //printf("arr_shape: [%zu, %zu, %zu]\n", arr->arr_shape[0], arr->arr_shape[1], arr->arr_shape[2]);
-
     if (shape_size == 1) return *index;
     else
         return index[shape_size - 1] + arr->arr_shape[shape_size - 1] * calculate_offset(arr, index, shape_size - 1);
