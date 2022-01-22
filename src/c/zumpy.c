@@ -3,8 +3,6 @@
 // offset calculation which dynamically scales with N-dimensions
 size_t calculate_offset(array* arr, size_t* index, int shape_size)
 {
-    //printf("arr_shape: [%zu, %zu, %zu]\n", arr->arr_shape[0], arr->arr_shape[1], arr->arr_shape[2]);
-
     if (shape_size == 1) return *index;
     else
         return index[shape_size - 1] + arr->arr_shape[shape_size - 1] * calculate_offset(arr, index, shape_size - 1);
@@ -102,4 +100,23 @@ float arr_sum(array* arr)
             break;
     }
     return sum; // 0.0
+}
+
+// myarr.shape = {3, 3}
+size_t sub_shape[] = {3};
+size_t sub_idx[][1] = {
+        {-1},
+        {0,1,2}
+};
+arr_subset(&myarr, sub_shape, 1, sub_idx, &subarr);
+
+void get_column(array* arr, size_t dimension, size_t* indices)
+{
+
+}
+
+void arr_subset(array* src, size_t* sub_shape, size_t sub_shape_size, size_t* sub_idx, array* dest)
+{
+    arr_init(dest, sub_shape, sub_shape_size, src->dtype);
+
 }
