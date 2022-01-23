@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 typedef enum { INT32, FLOAT } type;
 
@@ -206,10 +207,59 @@ float arr_sum(array* arr);
 
 
 
-float arr_sum_row(array* arr, size_t row_index);
-
-
-
-float arr_sum_column(array* arr, size_t col_index);
+/**
+ * Slice an array by specifying a jagged array indicating what indices to pull from which dimensions of a source array and store them into a target aray.
+ * @note For the sub array, you DO NOT need to initalize it as it will be initialized in the function for you. But you still must free it. See the example below for a full example.
+ * @param srcarray Source array to slice from.
+ * @param sub_arr_idx A jagged array indicating the indices to pull from each dimension of srcarray. Index 0 will be an array of indices to extract from dimension 0 of the array and so on for higher indices.
+ * @param sub_arr_dims An array indicating the shape of the slice. E.g {3, 1} if your slice will produce a 3x1 array.
+ * @param sub_arr_dims_len A value indicating total dimensions that are being sliced.
+ * @param subarray Target array to store slices into.
+ * @code
+ * #include "zumpy.h"
+ *
+ * // ... other code
+ *
+ * // set up dimensions to slice
+ * // this will take index 0-2 on dimension 0 and index 0 on dimension 1 (slicing one column)
+ * size_t dims[2] = {3, 1}; // slice 3x1 array
+ * size_t dim0[3] = {0, 1, 2}; // pull index 0-2 from dimension 0 (i.e all rows)
+ * size_t dim1[1] = {0}; // pull index 0 from dimension 1 (i.e the first column)
+ * size_t* sub_arr_index[2] = { dim0, dim1 };
+ *
+ * // create example array: 3x3 filled with 10s
+ * size_t shape[2] = {3, 3};
+ * array arr, sub; // NOTE: DO NOT initialize sub here; it will be initialized for you
+ * arr_init(&arr, shape, 2, INT32);
+ *
+ * int32_t val = 10;
+ * arr_fill(&arr, &val);
+ *
+ * // slice the first column
+ * arr_slice(&arr, sub_arr_index, dims, 2, &sub);
+ *
+ * // print our sliced array (TODO: implement a generic method to do this; this is messy!!)
+ * size_t idx[2] = {0,0};
+ * for (size_t i = 0; i < sub.arr_shape[0]; ++i) {
+ *    idx[0] = i;
+ *    for (size_t j = 0; j < sub.arr_shape[1]; ++j) {
+ *         idx[1] = j;
+ *         printf("%d ", *(int32_t *)arr_at(&sub, idx));
+ *     }
+ *     printf("\n");
+ * }
+ *
+ * arr_free(&arr);
+ * arr_free(&sub);
+ * @endcode
+ * **Output:**
+ * This slices a 3x1 array of 10s from the original 3x3 array (the first column)
+ * @code
+ * 10
+ * 10
+ * 10
+ * @endcode
+ */
+void arr_slice(array* srcarray, size_t** sub_arr_idx, size_t* sub_arr_dims, size_t sub_arr_dims_len, array* subarray);
 
 #endif //ZUMPY_ZUMPY_H
