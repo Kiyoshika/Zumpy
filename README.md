@@ -12,67 +12,42 @@ However, if you DO want to use it, you can export just the python folder within 
 Even though I use the verbage "2D" and "3D" array, internally every array is stored as a one-dimensional void pointer. The multiple dimensions are just mathematical offset calculations to mimick multi-dimensional arrays. Check out the C code if you're interested in how this is done.
 
 # Example
-This is the dummy example of the first working build. This will create a 1D, 2D and 3D array and fill it with int32 values of 10.
+This is the dummy example of the first working build. This will create a 3x2 array filled with 10s and slice the first column into a separate 3x1 array.
 ```python
 from zumpy import array
 
-# create a 1D array with 5 elements
-arr1D = array([5], 'int32')
-arr1D.fill(10)
+# create a 3x2 array filled with 10s
+arr = array([3,2], 'int32')
+arr.fill(10)
 
-print("1D Array:\n=================")
-for i in range(arr1D.shape[0]):
-    print(str(arr1D.at([i])) + " ", end='')
-print("\n")
+# take all row indices from the 0th column
+subarray = arr.slice([range(arr.shape[0]), [0]])
 
-
-
-# create a 2x3 array for a total of 6 elements
-arr2D = array([2,3], 'int32')
-arr2D.fill(10)
-
-print("2D Array:\n=================")
-for i in range(arr2D.shape[0]):
-    for j in range(arr2D.shape[1]):
-        print(str(arr2D.at([i,j])) + " ", end='')
+# print original 3x2 array
+print("Original Array:")
+for i in range(arr.shape[0]):
+    for j in range(arr.shape[1]):
+        print(str(arr[[i,j]]) + " ", end = '')
     print("")
+print("")
 
-
-
-# create a 3x3x3 array for a total of 27 elements
-arr3D = array([3,3,3], 'int32')
-arr3D.fill(10)
-
-print("\n3D Array:\n=================")
-for i in range(arr3D.shape[0]):
-    for j in range(arr3D.shape[1]):
-        for k in range(arr3D.shape[2]):
-            print(str(arr3D.at([i,j,k])) + " ", end='')
-        print("")
+# print sliced 3x1 array
+print("Sliced Array (First Column):")
+for i in range(subarray.shape[0]):
+    for j in range(subarray.shape[1]):
+        print(str(subarray[[i,j]]) + " ", end = '')
     print("")
 ```
+
 Output:
 ```
-1D Array:
-=================
-10 10 10 10 10 
+Original Array:
+10 10 
+10 10 
+10 10 
 
-2D Array:
-=================
-10 10 10 
-10 10 10 
-
-3D Array:
-=================
-10 10 10 
-10 10 10 
-10 10 10 
-
-10 10 10 
-10 10 10 
-10 10 10 
-
-10 10 10 
-10 10 10 
-10 10 10 
+Sliced Array (First Column):
+10 
+10 
+10 
 ```
