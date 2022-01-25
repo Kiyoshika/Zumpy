@@ -125,7 +125,7 @@ class array():
         p_slice_dims = (c_size_t * len(slice_dims))(*slice_dims)
         _libZumpy.arr_slice(byref(self.arr), pp_slice_indices, p_slice_dims, c_size_t(slice_idx_len), byref(ref_arr))
 
-        ret_arr = array(slice_dims, 'int32')
+        ret_arr = array(slice_dims, self.dtype)
         ret_arr.arr = ref_arr
 
         return ret_arr
