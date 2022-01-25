@@ -1,13 +1,21 @@
 from zumpy import array
 
-arr2D = array([2,3], 'float')
-arr2D.fill(10.0)
-arr2D[[0,2]] = 20.0
+# create a 3x2 array filled with 10s
+arr = array([3,2], 'int32')
+arr.fill(10)
 
-print("2D Array:\n=================")
-for i in range(arr2D.shape[0]):
-    for j in range(arr2D.shape[1]):
-        print(str(arr2D[[i,j]]) + " ", end = '')
+# take all row indices from the 0th column
+subarray = arr.slice([range(arr.shape[0]), [0]])
+
+print("Original Array:")
+for i in range(arr.shape[0]):
+    for j in range(arr.shape[1]):
+        print(str(arr[[i,j]]) + " ", end = '')
     print("")
+print("")
 
-print("\nSum: ", arr2D.sum())
+print("Sliced Array (First Column):")
+for i in range(subarray.shape[0]):
+    for j in range(subarray.shape[1]):
+        print(str(subarray[[i,j]]) + " ", end = '')
+    print("")
