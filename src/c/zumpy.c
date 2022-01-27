@@ -126,7 +126,7 @@ bool check_index_zero(size_t* index, size_t len)
 // indices : the collection of all possible indices based off the combinations of sub_arr_idx. This is
 // the parameter we store our results into to use when slicing arrays. Pass this as NULL as we will
 // allocate the memory inside this function.
-size_t** get_index_combinations(size_t** sub_arr_idx, size_t* sub_arr_dims, size_t sub_arr_dims_len, size_t** indices)
+size_t** get_index_combinations(size_t* sub_arr_dims, size_t sub_arr_dims_len, size_t** indices)
 {
     size_t* bounds = malloc(sizeof(size_t) * sub_arr_dims_len);
     size_t* current_idx = malloc(sizeof(size_t) * sub_arr_dims_len);
@@ -176,7 +176,7 @@ size_t** get_index_combinations(size_t** sub_arr_idx, size_t* sub_arr_dims, size
 
 void arr_slice(array* srcarray, size_t** sub_arr_idx, size_t* sub_arr_dims, size_t sub_arr_dims_len, array* subarray)
 {
-    size_t** indices = get_index_combinations(sub_arr_idx, sub_arr_dims, sub_arr_dims_len, indices);
+    size_t** indices = get_index_combinations(sub_arr_dims, sub_arr_dims_len, indices);
 
     size_t total_combinations = 1;
     for (size_t i = 0; i < sub_arr_dims_len; ++i)
