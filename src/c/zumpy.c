@@ -176,7 +176,7 @@ size_t** get_index_combinations(size_t* sub_arr_dims, size_t sub_arr_dims_len, s
 
 void arr_slice(array* srcarray, size_t** sub_arr_idx, size_t* sub_arr_dims, size_t sub_arr_dims_len, array* subarray)
 {
-    size_t** indices = get_index_combinations(sub_arr_dims, sub_arr_dims_len, indices);
+    size_t** indices = get_index_combinations(sub_arr_dims, sub_arr_dims_len, NULL);
 
     size_t total_combinations = 1;
     for (size_t i = 0; i < sub_arr_dims_len; ++i)
