@@ -8,14 +8,7 @@ arr.fill(10)
 subarray = arr.slice([range(arr.shape[0]), [0]])
 
 print("Original Array:")
-for i in range(arr.shape[0]):
-    for j in range(arr.shape[1]):
-        print(str(arr[[i,j]]) + " ", end = '')
-    print("")
-print("")
+print(arr)
 
-print("Sliced Array (First Column):")
-for i in range(subarray.shape[0]):
-    for j in range(subarray.shape[1]):
-        print(str(subarray[[i,j]]) + " ", end = '')
-    print("")
+print("Subarray:")
+print(subarray)

@@ -182,7 +182,7 @@ void arr_fill(array* arr, void* value);
  * @note For multi-dimensional arrays this will sum ALL cells. If you want to sum a specific row or column, check arr_sum_row(array*) and arr_sum_column(array*).
  * @see arr_sum_row(array*)
  * @see arr_sum_column(array*)
- * @param arr
+ * @param arr Reference (pointer) to an array struct.
  * @return The sum of all cells as a float.
  * @code
  * #include "zumpy.h"
@@ -262,4 +262,31 @@ float arr_sum(array* arr);
  */
 void arr_slice(array* srcarray, size_t** sub_arr_idx, size_t* sub_arr_dims, size_t sub_arr_dims_len, array* subarray);
 
+
+
+/**
+ * Print the contents of an array to the console.
+ * @param arr Reference (pointer) to an array struct.
+ * @code
+ * #include "zumpy.h"
+ *
+ * // ... other code
+ *
+ * // initialize 3x2 array
+ * size_t shape[] = {3, 2};
+ * array arr;
+ * arr_init(&arr, shape, 2, INT32);
+ *
+ * // fill all cells with 10
+ * int32_t val = 10;
+ * arr_fill(&arr, &val);
+ *
+ * // print array contents to the console
+ * arr_print(&arr);
+ *
+ * // deallocate
+ * arr_free(&arr);
+ * @endcode
+ */
+void arr_print(array* arr);
 #endif //ZUMPY_ZUMPY_H
