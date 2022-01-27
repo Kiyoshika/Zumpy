@@ -37,6 +37,9 @@ _libZumpy.arr_sum.restype = c_float
 _libZumpy.arr_slice.argtypes = [POINTER(array_wrapper), POINTER(POINTER(c_size_t)), POINTER(c_size_t), c_size_t, POINTER(array_wrapper)]
 _libZumpy.arr_slice.restype = None
 
+_libZumpy.arr_print.argtypes = [POINTER(array_wrapper)]
+_libZumpy.arr_slice.restype = None
+
 class array():
     def _get_type_enum(self, dtype):
         if dtype == 'int32':
@@ -70,6 +73,15 @@ class array():
     def __del__(self):
         arr_ptr = pointer(self.arr)
         _libZumpy.arr_free(arr_ptr)
+
+    # override the print() call
+    def __str__(self):
+        arr_ptr = pointer(self.arr)
+        _libZumpy.arr_print(arr_ptr)
+        return ""
+
+    def __repr__(self):
+        self.__str__()
 
     def at(self, idx):
         idx_arr = (c_size_t * len(idx))(*idx)
