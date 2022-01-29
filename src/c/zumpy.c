@@ -109,6 +109,7 @@ bool check_index_zero(size_t* index, size_t len)
     size_t sum = 0;
     for (size_t i = 0; i < len; ++i)
         sum += index[i];
+
     return sum == 0;
 }
 
@@ -256,4 +257,141 @@ void print(array* arr, size_t* sub_arr_dims, size_t sub_arr_dims_len)
 void arr_print(array* arr)
 {
     print(arr, arr->arr_shape, arr->shape_size);
+}
+
+int cmp(const void* a, const void* b)
+{
+    return *(size_t*)a - *(size_t*)b;
+}
+
+// iterate over the boolean array for secondary index to check if a row should be kept or not
+bool check_row_boolean(filter_type ftype, bool* keep_row_arr, size_t keep_row_arr_size)
+{
+    switch(ftype)
+    {
+        case ANY: // any value in secondary index matches
+            for (size_t i = 0; i < keep_row_arr_size; ++i)
+                if (keep_row_arr[i])
+                    return true;
+            return false;
+
+        case ALL: // all values in secondary index match
+            for (size_t i = 0; i < keep_row_arr_size; ++i)
+                if (!keep_row_arr[i])
+                    return false;
+            return true;
+    }
+}
+
+void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type ftype)
+{
+    size_t* bounds = malloc(sizeof(size_t) * arr->shape_size);
+    size_t* current_idx = malloc(sizeof(size_t) * arr->shape_size);
+    size_t total_combinations = 1;
+    for (size_t i = 0; i < arr->shape_size; ++i)
+    {
+        total_combinations *= arr->arr_shape[i];
+        bounds[i] = arr->arr_shape[i];
+        current_idx[i] = 0; // initially set the index to [0,0,...,0]
+    }
+
+    size_t primary_index = current_idx[0];
+
+    // if user doesn't pass secondary indices, use all of them by default
+    bool secondary_idx_dynamic = false; // keep track if secondary idx was dynamically allocated
+    bool custom_idx = false;
+    if (secondary_indices == NULL)
+    {
+        secondary_indices = malloc(sizeof(size_t) * arr->arr_shape[arr->shape_size - 1]);
+        secondary_indices_size = arr->arr_shape[arr->shape_size - 1];
+        for (size_t i = 0; i < secondary_indices_size; ++i)
+            secondary_indices[i] = i;
+        secondary_idx_dynamic = true;
+    }
+    else
+    {
+        // if user passed their own secondary indices, make sure they're sorted to use bsearch
+        custom_idx = true;
+        qsort(secondary_indices, secondary_indices_size, sizeof(size_t), cmp);
+    }
+
+    // for filtering, we check every combination of index besides the 0th (the "primary" index).
+    // to be general, a trick to compute this for any dimension is to take the total size and divide it by the
+    // dimension of the 0th index.
+    size_t keep_row_arr_size;
+    size_t keep_row_iter = 0;
+    if (secondary_indices == NULL)
+        keep_row_arr_size = arr->total_size / arr->arr_shape[0];
+    else
+        keep_row_arr_size = secondary_indices_size;
+    // used to compute the logical on whether to keep a row. Stores result in row_logical
+    bool* keep_row_arr = malloc(sizeof(bool) * keep_row_arr_size);
+    for (size_t i = 0; i < keep_row_arr_size; ++i)
+        keep_row_arr[i] = false;
+
+    // records true/false on primary index on whether to keep the row
+    bool* row_logical = malloc(sizeof(bool) * arr->arr_shape[0]);
+    size_t row_logical_iter = 0;
+    bool first_pass_through = true;
+    while (true)
+    {
+        // if user passes custom secondary idx they want to search, then only pay
+        // attention to those indices
+        if (custom_idx)
+        {
+            int* item = bsearch(&current_idx[arr->shape_size - 1], secondary_indices, secondary_indices_size, sizeof(size_t), cmp);
+            if (item == NULL)
+            {
+                // increment index and continue
+                current_idx[arr->shape_size - 1]++;
+                goto next_iter;
+            }
+        }
+
+        if (current_idx[0] == primary_index + 1)
+        {
+            row_logical[row_logical_iter] = check_row_boolean(ftype, keep_row_arr, keep_row_arr_size);
+            // reset boolean array
+            for (size_t i = 0; i < keep_row_arr_size; ++i)
+                keep_row_arr[i] = false;
+            primary_index++;
+            row_logical_iter++;
+            keep_row_iter = 0;
+        }
+
+        if (filter(arr_at(arr, current_idx)))
+            keep_row_arr[keep_row_iter] = true;
+
+        current_idx[arr->shape_size - 1]++;
+        keep_row_iter++;
+        // a flag used to jump to when skipping indices if user passes custom secondary idx
+        next_iter:
+        for (size_t i = arr->shape_size; i-- > 0;)
+        {
+            if (current_idx[i] >= bounds[i])
+            {
+                current_idx[i] = 0;
+                if (i == 0)
+                    break;
+                current_idx[i-1]++;
+            }
+        }
+
+        if (check_index_zero(current_idx, arr->shape_size))
+            break;
+    }
+
+    // check final row
+    row_logical[arr->arr_shape[0] - 1] = check_row_boolean(ftype, keep_row_arr, keep_row_arr_size);
+    for (size_t i = 0; i < arr->arr_shape[0]; ++i)
+        printf("%s\n", row_logical[i] ? "true" : "false");
+
+    // TODO: Take row_logical and populate a new array (or resize current array) with filtered rows.
+
+    free(bounds);
+    free(current_idx);
+    free(keep_row_arr);
+    free(row_logical);
+    if (secondary_idx_dynamic) // free secondary idx if it was dynamically allocated by algorithm
+        free(secondary_indices);
 }

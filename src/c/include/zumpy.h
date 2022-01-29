@@ -289,4 +289,7 @@ void arr_slice(array* srcarray, size_t** sub_arr_idx, size_t* sub_arr_dims, size
  * @endcode
  */
 void arr_print(array* arr);
+
+typedef enum {ANY, ALL} filter_type;
+void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type);
 #endif //ZUMPY_ZUMPY_H
