@@ -1,0 +1,733 @@
+\hypertarget{zumpy_8h}{}\doxysection{src/c/include/zumpy.h File Reference}
+\label{zumpy_8h}\index{src/c/include/zumpy.h@{src/c/include/zumpy.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structarray}{array}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}} \{ \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}}
+, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2da9cf4a0866224b0bb4a7a895da27c9c4c}{FLOAT}}
+ \}
+\item 
+enum \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}} \{ \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72aa00374190265e7b6447db44977a7dff1}{ANY}}
+, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72ab1d5eac4b1dca480c8056eaea7663b7a}{ALL}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\+\_\+init}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr, size\+\_\+t $\ast$arr\+\_\+shape, size\+\_\+t shape\+\_\+size, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}} dtype)
+\begin{DoxyCompactList}\small\item\em Initialize an empty array of arbitrary shape. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\+\_\+free}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr)
+\begin{DoxyCompactList}\small\item\em Free up allocated memory taken by the array. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{arr\+\_\+at}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr, size\+\_\+t $\ast$index)
+\begin{DoxyCompactList}\small\item\em Access an element of the array by index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{arr\+\_\+set}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr, size\+\_\+t $\ast$index, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Set a single value within the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\+\_\+fill}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Fill an array with a constant value. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{zumpy_8h_a58996706d1e643492c7f430291706a94}{arr\+\_\+sum}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr)
+\begin{DoxyCompactList}\small\item\em Sum all elements in an array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{zumpy_8h_acf3af84c10179df1c4c346d66ad9bc3c}{arr\+\_\+slice}} (\mbox{\hyperlink{structarray}{array}} $\ast$srcarray, size\+\_\+t $\ast$$\ast$sub\+\_\+arr\+\_\+idx, size\+\_\+t $\ast$sub\+\_\+arr\+\_\+dims, size\+\_\+t sub\+\_\+arr\+\_\+dims\+\_\+len, \mbox{\hyperlink{structarray}{array}} $\ast$subarray)
+\begin{DoxyCompactList}\small\item\em Slice an array by specifying a jagged array indicating what indices to pull from which dimensions of a source array and store them into a target aray. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\+\_\+print}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr)
+\begin{DoxyCompactList}\small\item\em Print the contents of an array to the console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}{arr\+\_\+filter}} (\mbox{\hyperlink{structarray}{array}} $\ast$arr, bool($\ast$filter)(void $\ast$), size\+\_\+t $\ast$secondary\+\_\+indices, size\+\_\+t secondary\+\_\+indices\+\_\+size, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}}, \mbox{\hyperlink{structarray}{array}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Function to filter an array\textquotesingle{}s rows and store results into a different array, dest. This is one of the more complicated functions so it may be best to check out the example to make sure you can understand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{zumpy_8h_ab3b7281956317556f846daaebf75de72}\label{zumpy_8h_ab3b7281956317556f846daaebf75de72}} 
+\index{zumpy.h@{zumpy.h}!filter\_type@{filter\_type}}
+\index{filter\_type@{filter\_type}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{filter\_type}{filter\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}}}
+
+Filter type used in arr\+\_\+filter(array$\ast$, bool ($\ast$)(void$\ast$), size\+\_\+t$\ast$, size\+\_\+t, filter\+\_\+type, array$\ast$) to specify whether to check if ALL columns match the condition or if at least one does. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANY@{ANY}!zumpy.h@{zumpy.h}}\index{zumpy.h@{zumpy.h}!ANY@{ANY}}}\mbox{\Hypertarget{zumpy_8h_ab3b7281956317556f846daaebf75de72aa00374190265e7b6447db44977a7dff1}\label{zumpy_8h_ab3b7281956317556f846daaebf75de72aa00374190265e7b6447db44977a7dff1}} 
+ANY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALL@{ALL}!zumpy.h@{zumpy.h}}\index{zumpy.h@{zumpy.h}!ALL@{ALL}}}\mbox{\Hypertarget{zumpy_8h_ab3b7281956317556f846daaebf75de72ab1d5eac4b1dca480c8056eaea7663b7a}\label{zumpy_8h_ab3b7281956317556f846daaebf75de72ab1d5eac4b1dca480c8056eaea7663b7a}} 
+ALL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{zumpy_8h_source_l00308}{308}} of file \mbox{\hyperlink{zumpy_8h_source}{zumpy.\+h}}.
+
+\mbox{\Hypertarget{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}\label{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}} 
+\index{zumpy.h@{zumpy.h}!type@{type}}
+\index{type@{type}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INT32@{INT32}!zumpy.h@{zumpy.h}}\index{zumpy.h@{zumpy.h}!INT32@{INT32}}}\mbox{\Hypertarget{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}\label{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}} 
+INT32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOAT@{FLOAT}!zumpy.h@{zumpy.h}}\index{zumpy.h@{zumpy.h}!FLOAT@{FLOAT}}}\mbox{\Hypertarget{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2da9cf4a0866224b0bb4a7a895da27c9c4c}\label{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2da9cf4a0866224b0bb4a7a895da27c9c4c}} 
+FLOAT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{zumpy_8h_source_l00011}{11}} of file \mbox{\hyperlink{zumpy_8h_source}{zumpy.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}\label{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}} 
+\index{zumpy.h@{zumpy.h}!arr\_at@{arr\_at}}
+\index{arr\_at@{arr\_at}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_at()}{arr\_at()}}
+{\footnotesize\ttfamily void $\ast$ arr\+\_\+at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr,  }\item[{size\+\_\+t $\ast$}]{index }\end{DoxyParamCaption})}
+
+
+
+Access an element of the array by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct. \\
+\hline
+{\em index} & A size\+\_\+t array (decayed to pointer) indicating the index to access.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} myarr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 3, 3\};}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&myarr, shape, 3, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{int32\_t val = 10;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\&myarr, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// specify the index to access within the "{}3D"{} array}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} index[] = \{ 2, 1, 1 \};}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}}, *(int32\_t*)\mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{arr\_at}}(\&myarr, index)); \textcolor{comment}{// 10}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&myarr);}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}\label{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}} 
+\index{zumpy.h@{zumpy.h}!arr\_fill@{arr\_fill}}
+\index{arr\_fill@{arr\_fill}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_fill()}{arr\_fill()}}
+{\footnotesize\ttfamily void arr\+\_\+fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Fill an array with a constant value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct. \\
+\hline
+{\em value} & Value to fill the array with.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// ... other code}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} myarr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 3, 3\};}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&myarr, shape, 3, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// fill "{}3D"{} array with values of 10}}
+\DoxyCodeLine{int32\_t val = 10;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\&myarr, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// print the contents of the "{}3D"{} array}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} index[] = \{ 0, 0, 0 \};}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < shape[0]; ++i)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    index[0] = i;}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < shape[1]; ++j)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        index[1] = j;}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} k = 0; k < shape[2]; ++k)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            index[2] = k;}
+\DoxyCodeLine{            printf(\textcolor{stringliteral}{"{}\%d "{}}, *(int32\_t*)\mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{arr\_at}}(\&myarr, index));}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&myarr);}
+
+\end{DoxyCode}
+
+
+Output\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{10 10 10}
+\DoxyCodeLine{10 10 10}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}\label{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}} 
+\index{zumpy.h@{zumpy.h}!arr\_filter@{arr\_filter}}
+\index{arr\_filter@{arr\_filter}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_filter()}{arr\_filter()}}
+{\footnotesize\ttfamily void arr\+\_\+filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr,  }\item[{bool($\ast$)(void $\ast$)}]{filter,  }\item[{size\+\_\+t $\ast$}]{secondary\+\_\+indices,  }\item[{size\+\_\+t}]{secondary\+\_\+indices\+\_\+size,  }\item[{\mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}}}]{,  }\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Function to filter an array\textquotesingle{}s rows and store results into a different array, dest. This is one of the more complicated functions so it may be best to check out the example to make sure you can understand. 
+
+\begin{DoxyWarning}{Warning}
+It\textquotesingle{}s best to initialize the \char`\"{}data\char`\"{} member for the \char`\"{}dest\char`\"{} array to NULL to avoid uninitialized errors. See examples below. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+If no rows are found, an \char`\"{}empty\char`\"{} array is created with \{0, 0, ..., 0\} shape. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Primary array to filter \\
+\hline
+{\em filter} & A boolean function pointer specifying your filter condition(s). Parameter must be a void pointer and you will have to cast your value to the desired data type. \\
+\hline
+{\em secondary\+\_\+indices} & Optional parameter specifying specific column(s) to apply the filter to. If NULL is passed, all columns will be checked. \\
+\hline
+{\em secondary\+\_\+indices\+\_\+size} & The size of the previous parameter, secondary\+\_\+indices. If NULL is passed, you can pass 0. \\
+\hline
+{\em filter\+\_\+type} & An enum specifying the \char`\"{}type\char`\"{} of filter to apply. One of \char`\"{}\+ANY\char`\"{} or \char`\"{}\+ALL\char`\"{}. For 1D arrays this has no effect. 1D arrays will just remove the values that don\textquotesingle{}t match the condition regardless of which setting is used. For 2D arrays and higher, it will only keep the row if ANY of the specified columns match the condition, or if ALL values in the specified columns match the condition. See examples below for more detail. \\
+\hline
+{\em dest} & Destination array to store filtered results into. Memory will be allocated inside the function call so no need to initialize it beforehand.\\
+\hline
+\end{DoxyParams}
+The simplest example, filtering a 1D array of 5 elements. Note that using ANY or ALL would produce the exact same result. As mentioned above, this parameter has no effect on 1D arrays.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} filter(\textcolor{keywordtype}{void}* value)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} *(int32\_t*)value > 10;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{// initialize 3x3x3 array}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} shape[] = \{5\};}
+\DoxyCodeLine{    \mbox{\hyperlink{structarray}{array}} arr;}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&arr, shape, 1, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// fill array with crude random values between 0-\/49}}
+\DoxyCodeLine{    int32\_t val;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} idx[] = \{0\};}
+\DoxyCodeLine{    srand(3331); \textcolor{comment}{// specific seed for reproducibility}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} r = 0; r < arr.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[0]; ++r)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        idx[0] = r;}
+\DoxyCodeLine{        val = rand() \% 50;}
+\DoxyCodeLine{        \mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{arr\_set}}(\&arr, idx, \&val);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}BEFORE FILTERING:\(\backslash\)n======================\(\backslash\)n"{}});}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&arr);}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// it's best to initialize data to NULL to avoid uninitialized errors}}
+\DoxyCodeLine{    \mbox{\hyperlink{structarray}{array}} filtered = \{.\mbox{\hyperlink{structarray_a735984d41155bc1032e09bece8f8d66d}{data}} = NULL\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// this filter checks for values that match the condition. Note that 1D arrays}}
+\DoxyCodeLine{    \textcolor{comment}{// are a bit of a special case. ANY or ALL actually has no effect. It will remove the values}}
+\DoxyCodeLine{    \textcolor{comment}{// that don't match regardless of which setting is used.}}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}{arr\_filter}}(\&arr, \&filter, NULL, 0, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72aa00374190265e7b6447db44977a7dff1}{ANY}}, \&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\(\backslash\)nAFTER FILTERING:\(\backslash\)n======================\(\backslash\)n"{}});}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// deallocate}}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&arr);}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&filtered);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{BEFORE FILTERING:}
+\DoxyCodeLine{======================}
+\DoxyCodeLine{43 8 25 26 13}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{AFTER FILTERING:}
+\DoxyCodeLine{======================}
+\DoxyCodeLine{43 25 26 13}
+
+\end{DoxyCode}
+
+
+Here\textquotesingle{}s a simple example of filtering a 3x2 array on one column. Next example shows a more complicated case of filtering a 3x3x3 array.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} filter(\textcolor{keywordtype}{void}* value)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} *(int32\_t*)value > 10;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{// initialize 3x2 array}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} shape[] = \{3, 2\};}
+\DoxyCodeLine{    \mbox{\hyperlink{structarray}{array}} arr;}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&arr, shape, 2, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// fill array with crude random values between 0-\/49}}
+\DoxyCodeLine{    int32\_t val;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} idx[] = \{0, 0\};}
+\DoxyCodeLine{    srand(3331); \textcolor{comment}{// specific seed for reproducibility}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} r = 0; r < arr.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[0]; ++r)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        idx[0] = r;}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} c = 0; c < arr.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[1]; ++c)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            idx[1] = c;}
+\DoxyCodeLine{            val = rand() \% 50;}
+\DoxyCodeLine{            \mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{arr\_set}}(\&arr, idx, \&val);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}BEFORE FILTERING:\(\backslash\)n======================\(\backslash\)n"{}});}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&arr);}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// it's best to initialize data to NULL to avoid uninitialized errors}}
+\DoxyCodeLine{    \mbox{\hyperlink{structarray}{array}} filtered = \{.\mbox{\hyperlink{structarray_a735984d41155bc1032e09bece8f8d66d}{data}} = NULL\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// only apply filter to first and third column}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} secondary\_idx[] = \{1\};}
+\DoxyCodeLine{    \textcolor{comment}{// this filter checks if ANY columns in the second dimension are > 10 for column 1}}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}{arr\_filter}}(\&arr, \&filter, secondary\_idx, 1, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72aa00374190265e7b6447db44977a7dff1}{ANY}}, \&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}AFTER FILTERING:\(\backslash\)n======================\(\backslash\)n"{}});}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// deallocate}}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&arr);}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{BEFORE FILTERING:}
+\DoxyCodeLine{======================}
+\DoxyCodeLine{43 8}
+\DoxyCodeLine{25 26}
+\DoxyCodeLine{13 44}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{AFTER FILTERING:}
+\DoxyCodeLine{======================}
+\DoxyCodeLine{25 26}
+\DoxyCodeLine{13 44}
+
+\end{DoxyCode}
+
+
+The below code is an example of filtering two columns from a 3x3x3 array. Three dimensions can be a little hard to visualize so hopefully this sheds insight into how it works for dimensions greater than two. Note that we have three rows of 3x3 arrays. We are checking column 0 and 2 in each 3x3 array. If ALL three rows in the 3x3 array meet the condition we keep it. Otherwise, we toss it. You can see that the third 3x3 block is excluded because the very last element is 1 which is in column 2 and is not greater than 10. But the other two blocks are kept because every value in column 0 and 2 is greater than 10.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} filter(\textcolor{keywordtype}{void}* value)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} *(int32\_t*)value > 10;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{// initialize 3x3x3 array}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} shape[] = \{3, 3, 3\};}
+\DoxyCodeLine{    \mbox{\hyperlink{structarray}{array}} arr;}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&arr, shape, 3, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// fill array with crude random values between 0-\/49}}
+\DoxyCodeLine{    int32\_t val;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} idx[] = \{0, 0, 0\};}
+\DoxyCodeLine{    srand(3331); \textcolor{comment}{// specific seed for reproducibility}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} r = 0; r < arr.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[0]; ++r)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        idx[0] = r;}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} c = 0; c < arr.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[1]; ++c)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            idx[1] = c;}
+\DoxyCodeLine{            \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} z = 0; z < arr.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[2]; ++z)}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                idx[2] = z;}
+\DoxyCodeLine{                val = rand() \% 50;}
+\DoxyCodeLine{                \mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{arr\_set}}(\&arr, idx, \&val);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}BEFORE FILTERING:\(\backslash\)n======================\(\backslash\)n"{}});}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&arr);}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// it's best to initialize data to NULL to avoid uninitialized errors}}
+\DoxyCodeLine{    \mbox{\hyperlink{structarray}{array}} filtered = \{.\mbox{\hyperlink{structarray_a735984d41155bc1032e09bece8f8d66d}{data}} = NULL\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// only apply filter to first and third column}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} secondary\_idx[] = \{0,2\};}
+\DoxyCodeLine{    \textcolor{comment}{// this filter checks if ALL columns in the third dimension are > 10 for column 0 and 2}}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}{arr\_filter}}(\&arr, \&filter, secondary\_idx, 2, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72ab1d5eac4b1dca480c8056eaea7663b7a}{ALL}}, \&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}AFTER FILTERING:\(\backslash\)n======================\(\backslash\)n"{}});}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// deallocate}}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&arr);}
+\DoxyCodeLine{    \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&filtered);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{BEFORE FILTERING:}
+\DoxyCodeLine{======================}
+\DoxyCodeLine{43 8 25}
+\DoxyCodeLine{26 13 44}
+\DoxyCodeLine{11 44 27}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{26 20 40}
+\DoxyCodeLine{44 19 17}
+\DoxyCodeLine{40 49 47}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{46 20 38}
+\DoxyCodeLine{41 18 16}
+\DoxyCodeLine{31 12 1}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{AFTER FILTERING:}
+\DoxyCodeLine{======================}
+\DoxyCodeLine{43 8 25}
+\DoxyCodeLine{26 13 44}
+\DoxyCodeLine{11 44 27}
+\DoxyCodeLine{\(\backslash\)n}
+\DoxyCodeLine{26 20 40}
+\DoxyCodeLine{44 19 17}
+\DoxyCodeLine{40 49 47}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}\label{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}} 
+\index{zumpy.h@{zumpy.h}!arr\_free@{arr\_free}}
+\index{arr\_free@{arr\_free}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_free()}{arr\_free()}}
+{\footnotesize\ttfamily void arr\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr }\end{DoxyParamCaption})}
+
+
+
+Free up allocated memory taken by the array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// ... other code}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} myarr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 3, 3\}; \textcolor{comment}{// create a 3x3x3 array}}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&myarr, shape, 3, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}}); \textcolor{comment}{// allocates memory}}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%d \%d \%d\(\backslash\)n"{}}, myarr.shape[0], myarr.shape[1], myarr.shape[2]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&myarr); \textcolor{comment}{// free memory allocated by the array}}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}\label{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}} 
+\index{zumpy.h@{zumpy.h}!arr\_init@{arr\_init}}
+\index{arr\_init@{arr\_init}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_init()}{arr\_init()}}
+{\footnotesize\ttfamily void arr\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr,  }\item[{size\+\_\+t $\ast$}]{arr\+\_\+shape,  }\item[{size\+\_\+t}]{shape\+\_\+size,  }\item[{\mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}}}]{dtype }\end{DoxyParamCaption})}
+
+
+
+Initialize an empty array of arbitrary shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct. \\
+\hline
+{\em arr\+\_\+shape} & A size\+\_\+t array (decayed to a pointer) indicating the dimensions of the array. \\
+\hline
+{\em shape\+\_\+size} & The length of the shape; i.\+e, the total number of dimensions. \\
+\hline
+{\em dtype} & Data type of the array; must be one of INT32 or FLOAT.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} myarr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 3, 3\}; \textcolor{comment}{// create a 3x3x3 array}}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&myarr, shape, 3, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}}); \textcolor{comment}{// allocates memory}}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%d \%d \%d\(\backslash\)n"{}}, myarr.shape[0], myarr.shape[1], myarr.shape[2]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&myarr); \textcolor{comment}{// free memory allocated by the array}}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}\label{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}} 
+\index{zumpy.h@{zumpy.h}!arr\_print@{arr\_print}}
+\index{arr\_print@{arr\_print}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_print()}{arr\_print()}}
+{\footnotesize\ttfamily void arr\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr }\end{DoxyParamCaption})}
+
+
+
+Print the contents of an array to the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// ... other code}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// initialize 3x2 array}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 2\};}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} arr;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&arr, shape, 2, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// fill all cells with 10}}
+\DoxyCodeLine{int32\_t val = 10;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\&arr, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// print array contents to the console}}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\&arr);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// deallocate}}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&arr);}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}\label{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}} 
+\index{zumpy.h@{zumpy.h}!arr\_set@{arr\_set}}
+\index{arr\_set@{arr\_set}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_set()}{arr\_set()}}
+{\footnotesize\ttfamily void arr\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr,  }\item[{size\+\_\+t $\ast$}]{index,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Set a single value within the array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct. \\
+\hline
+{\em index} & Index to set the value at. \\
+\hline
+{\em value} & Value to set.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// ... other code}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} myarr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 3, 3\};}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&myarr, shape, 3, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// fill array with values of 10}}
+\DoxyCodeLine{int32\_t val = 10;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\&myarr, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// set index 2,1,1 to 20}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} index[] = \{ 2, 1, 1 \};}
+\DoxyCodeLine{val = 20;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{arr\_set}}(\&myarr, index, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}}, *(int32\_t*)\mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{arr\_at}}(\&myarr, index)); \textcolor{comment}{// 20}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&myarr);}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_acf3af84c10179df1c4c346d66ad9bc3c}\label{zumpy_8h_acf3af84c10179df1c4c346d66ad9bc3c}} 
+\index{zumpy.h@{zumpy.h}!arr\_slice@{arr\_slice}}
+\index{arr\_slice@{arr\_slice}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_slice()}{arr\_slice()}}
+{\footnotesize\ttfamily void arr\+\_\+slice (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{srcarray,  }\item[{size\+\_\+t $\ast$$\ast$}]{sub\+\_\+arr\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{sub\+\_\+arr\+\_\+dims,  }\item[{size\+\_\+t}]{sub\+\_\+arr\+\_\+dims\+\_\+len,  }\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{subarray }\end{DoxyParamCaption})}
+
+
+
+Slice an array by specifying a jagged array indicating what indices to pull from which dimensions of a source array and store them into a target aray. 
+
+\begin{DoxyNote}{Note}
+For the sub array, you DO NOT need to initalize it as it will be initialized in the function for you. But you still must free it. See the example below for a full example. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em srcarray} & Source array to slice from. \\
+\hline
+{\em sub\+\_\+arr\+\_\+idx} & A jagged array indicating the indices to pull from each dimension of srcarray. Index 0 will be an array of indices to extract from dimension 0 of the array and so on for higher indices. \\
+\hline
+{\em sub\+\_\+arr\+\_\+dims} & An array indicating the shape of the slice. E.\+g \{3, 1\} if your slice will produce a 3x1 array. \\
+\hline
+{\em sub\+\_\+arr\+\_\+dims\+\_\+len} & A value indicating total dimensions that are being sliced. \\
+\hline
+{\em subarray} & Target array to store slices into.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// ... other code}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// set up dimensions to slice}}
+\DoxyCodeLine{\textcolor{comment}{// this will take index 0-\/2 on dimension 0 and index 0 on dimension 1 (slicing one column)}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} dims[2] = \{3, 1\}; \textcolor{comment}{// slice 3x1 array}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} dim0[3] = \{0, 1, 2\}; \textcolor{comment}{// pull index 0-\/2 from dimension 0 (i.e all rows)}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} dim1[1] = \{0\}; \textcolor{comment}{// pull index 0 from dimension 1 (i.e the first column)}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}* sub\_arr\_index[2] = \{ dim0, dim1 \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// create example array: 3x3 filled with 10s}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[2] = \{3, 3\};}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} arr, sub; \textcolor{comment}{// NOTE: DO NOT initialize sub here; it will be initialized for you}}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&arr, shape, 2, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{int32\_t val = 10;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\&arr, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// slice the first column}}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_acf3af84c10179df1c4c346d66ad9bc3c}{arr\_slice}}(\&arr, sub\_arr\_index, dims, 2, \&sub);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// print our sliced array (TODO: implement a generic method to do this; this is messy!!)}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} idx[2] = \{0,0\};}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < sub.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[0]; ++i) \{}
+\DoxyCodeLine{   idx[0] = i;}
+\DoxyCodeLine{   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < sub.\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}}[1]; ++j) \{}
+\DoxyCodeLine{        idx[1] = j;}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}\%d "{}}, *(int32\_t *)\mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{arr\_at}}(\&sub, idx));}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&arr);}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&sub);}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+This slices a 3x1 array of 10s from the original 3x3 array (the first column) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{10}
+\DoxyCodeLine{10}
+\DoxyCodeLine{10}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{zumpy_8h_a58996706d1e643492c7f430291706a94}\label{zumpy_8h_a58996706d1e643492c7f430291706a94}} 
+\index{zumpy.h@{zumpy.h}!arr\_sum@{arr\_sum}}
+\index{arr\_sum@{arr\_sum}!zumpy.h@{zumpy.h}}
+\doxysubsubsection{\texorpdfstring{arr\_sum()}{arr\_sum()}}
+{\footnotesize\ttfamily float arr\+\_\+sum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarray}{array}} $\ast$}]{arr }\end{DoxyParamCaption})}
+
+
+
+Sum all elements in an array. 
+
+\begin{DoxyNote}{Note}
+For multi-\/dimensional arrays this will sum ALL cells. If you want to sum a specific row or column, check arr\+\_\+sum\+\_\+row(array$\ast$) and arr\+\_\+sum\+\_\+column(array$\ast$). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+arr\+\_\+sum\+\_\+row(array$\ast$) 
+
+arr\+\_\+sum\+\_\+column(array$\ast$) 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Reference (pointer) to an array struct. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of all cells as a float.
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{zumpy_8h}{zumpy.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// ... other code}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structarray}{array}} myarr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shape[] = \{3, 3\};}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\&myarr, shape, 2, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// fill array with values of 10}}
+\DoxyCodeLine{int32\_t val = 10;}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\&myarr, \&val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%f\(\backslash\)n"{}}, \mbox{\hyperlink{zumpy_8h_a58996706d1e643492c7f430291706a94}{arr\_sum}}(\&myarr)); \textcolor{comment}{// 90.0}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\&myarr);}
+
+\end{DoxyCode}
+ 

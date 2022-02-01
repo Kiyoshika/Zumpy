@@ -1,0 +1,32 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Data Structure Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Data Structures}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}File Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}File List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Data Structure Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}array Struct Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Field Documentation}{5}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}arr\_shape}{5}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}data}{6}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}dtype}{6}{subsubsection.3.1.2.3}%
+\contentsline {subsubsection}{\numberline {3.1.2.4}shape\_size}{6}{subsubsection.3.1.2.4}%
+\contentsline {subsubsection}{\numberline {3.1.2.5}total\_size}{6}{subsubsection.3.1.2.5}%
+\contentsline {subsubsection}{\numberline {3.1.2.6}type\_size}{6}{subsubsection.3.1.2.6}%
+\contentsline {chapter}{\numberline {4}File Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}src/c/include/zumpy.h File Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Enumeration Type Documentation}{8}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.1}filter\_type}{8}{subsubsection.4.1.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.2}type}{8}{subsubsection.4.1.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{8}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}arr\_at()}{9}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}arr\_fill()}{9}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}arr\_filter()}{10}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}arr\_free()}{13}{subsubsection.4.1.2.4}%
+\contentsline {subsubsection}{\numberline {4.1.2.5}arr\_init()}{13}{subsubsection.4.1.2.5}%
+\contentsline {subsubsection}{\numberline {4.1.2.6}arr\_print()}{14}{subsubsection.4.1.2.6}%
+\contentsline {subsubsection}{\numberline {4.1.2.7}arr\_set()}{14}{subsubsection.4.1.2.7}%
+\contentsline {subsubsection}{\numberline {4.1.2.8}arr\_slice()}{14}{subsubsection.4.1.2.8}%
+\contentsline {subsubsection}{\numberline {4.1.2.9}arr\_sum()}{15}{subsubsection.4.1.2.9}%
+\contentsline {section}{\numberline {4.2}zumpy.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{16}{section.4.2}%
+\contentsline {chapter}{Index}{19}{section*.5}%
