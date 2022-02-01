@@ -290,6 +290,247 @@ void arr_slice(array* srcarray, size_t** sub_arr_idx, size_t* sub_arr_dims, size
  */
 void arr_print(array* arr);
 
+/**
+ * Filter type used in arr_filter(array*, bool (*)(void*), size_t*, size_t, filter_type, array*)
+ * to specify whether to check if ALL columns match the condition or if at least one does.
+ */
 typedef enum {ANY, ALL} filter_type;
-void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type);
+
+/**
+ * Function to filter an array's rows and store results into a different array, dest.
+ * This is one of the more complicated functions so it may be best to check out the example to make sure you can understand.
+ * @warning It's best to set initialize the "data" member for the "dest" array to NULL to avoid uninitialized errors. See examples below.
+ * @note If no rows are found, an "empty" array is created with {0, 0, ..., 0} shape.
+ * @param arr Primary array to filter
+ * @param filter A boolean function pointer specifying your filter condition(s). Parameter must be a void pointer and you will have to cast your value to the desired data type.
+ * @param secondary_indices Optional parameter specifying specific column(s) to apply the filter to. If NULL is passed, all columns will be checked.
+ * @param secondary_indices_size The size of the previous parameter, secondary_indices. If NULL is passed, you can pass 0.
+ * @param filter_type An enum specifying the "type" of filter to apply. One of "ANY" or "ALL". For 1D arrays this has no effect. 1D arrays will just remove the values that don't match the condition regardless of which setting is used. For 2D arrays and higher, it will only keep the row if ANY of the specified columns match the condition, or if ALL values in the specified columns match the condition. See examples below for more detail.
+ * @param dest Destination array to store filtered results into. Memory will be allocated inside the function call so no need to initialize it beforehand.
+ * The simplest example, filtering a 1D array of 5 elements.
+ * Note that using ANY or ALL would produce the exact same result. As mentioned above, this parameter has no effect on 1D arrays.
+ * @code
+ * #include "zumpy.h"
+ * #include <time.h>
+ *
+ * bool filter(void* value)
+ * {
+ *     return *(int32_t*)value > 10;
+ * }
+ *
+ * int main()
+ * {
+ *     // initialize 3x3x3 array
+ *     size_t shape[] = {5};
+ *     array arr;
+ *     arr_init(&arr, shape, 1, INT32);
+ *
+ *     // fill array with crude random values between 0-49
+ *     int32_t val;
+ *     size_t idx[] = {0};
+ *     srand(3331); // specific seed for reproducibility
+ *     for (size_t r = 0; r < arr.arr_shape[0]; ++r)
+ *     {
+ *         idx[0] = r;
+ *         val = rand() % 50;
+ *         arr_set(&arr, idx, &val);
+ *     }
+ *
+ *     printf("BEFORE FILTERING:\n======================\n");
+ *     arr_print(&arr);
+ *     printf("\n");
+ *
+ *     // it's best to initialize data to NULL to avoid uninitialized errors
+ *     array filtered = {.data = NULL};
+ *
+ *     // this filter checks for values that match the condition. Note that 1D arrays
+ *     // are a bit of a special case. ANY or ALL actually has no effect. It will remove the values
+ *     // that don't match regardless of which setting is used.
+ *     arr_filter(&arr, &filter, NULL, 0, ANY, &filtered);
+ *
+ *     printf("\nAFTER FILTERING:\n======================\n");
+ *     arr_print(&filtered);
+ *
+ *     // deallocate
+ *     arr_free(&arr);
+ *     arr_free(&filtered);
+ *     return 0;
+ * }
+ * @endcode
+ * Output:
+ * @code
+ * BEFORE FILTERING:
+ * ======================
+ * 43 8 25 26 13
+ *
+ * AFTER FILTERING:
+ * ======================
+ * 43 25 26 13
+ * @endcode
+ *
+ *
+ *
+ * Here's a simple example of filtering a 3x2 array on one column. Next example shows a more complicated case of filtering a 3x3x3 array.
+ * @code
+ * #include "zumpy.h"
+ * #include <time.h>
+ *
+ * bool filter(void* value)
+ * {
+ *     return *(int32_t*)value > 10;
+ * }
+ *
+ * int main()
+ * {
+ *     // initialize 3x3x3 array
+ *     size_t shape[] = {3, 2};
+ *     array arr;
+ *     arr_init(&arr, shape, 2, INT32);
+ *
+ *     // fill array with crude random values between 0-49
+ *     int32_t val;
+ *     size_t idx[] = {0, 0};
+ *     srand(3331); // specific seed for reproducibility
+ *     for (size_t r = 0; r < arr.arr_shape[0]; ++r)
+ *     {
+ *         idx[0] = r;
+ *         for (size_t c = 0; c < arr.arr_shape[1]; ++c)
+ *         {
+ *             idx[1] = c;
+ *             val = rand() % 50;
+ *             arr_set(&arr, idx, &val);
+ *         }
+ *     }
+ *
+ *     printf("BEFORE FILTERING:\n======================\n");
+ *     arr_print(&arr);
+ *     printf("\n");
+ *
+ *     // it's best to initialize data to NULL to avoid uninitialized errors
+ *     array filtered = {.data = NULL};
+ *
+ *     // only apply filter to first and third column
+ *     size_t secondary_idx[] = {1};
+ *     // this filter checks if ANY columns in the second dimension are > 10 for column 1
+ *     arr_filter(&arr, &filter, secondary_idx, 1, ANY, &filtered);
+ *
+ *     printf("AFTER FILTERING:\n======================\n");
+ *     arr_print(&filtered);
+ *
+ *     // deallocate
+ *     arr_free(&arr);
+ *     arr_free(&filtered);
+ *
+ *     return 0;
+ * }
+ * @endcode
+ * Output:
+ * @code
+ * BEFORE FILTERING:
+ * ======================
+ * 43 8
+ * 25 26
+ * 13 44
+ *
+ * AFTER FILTERING:
+ * ======================
+ * 25 26
+ * 13 44
+ * @endcode
+ *
+ *
+ *
+ * The below code is an example of filtering two columns from a 3x3x3 array. Three dimensions can be a little hard to visualize so hopefully this sheds insight into how it works for dimensions greater than two.
+ * Note that we have three rows of 3x3 arrays. We are checking column 0 and 2 in each 3x3 array. If ALL three rows in the 3x3 array meet the condition we keep it. Otherwise, we toss it.
+ * You can see that the third 3x3 block is excluded because the very last element is 1 which is in column 2 and is not greater than 10.
+ * But the other two blocks are kept because every value in column 0 and 2 is greater than 10.
+ * @code
+ * #include "zumpy.h"
+ * #include <time.h>
+ *
+ * // user-defined filter to only grab values > 10
+ * // MUST be a void pointer. User will have to cast it to the appropriate type
+ * // in this case int32_t.
+ * bool filter(void* value)
+ * {
+ *     return *(int32_t*)value > 10;
+ * }
+ *
+ * int main()
+ * {
+ *     // initialize 3x3x3 array
+ *     size_t shape[] = {3, 3, 3};
+ *     array arr;
+ *     arr_init(&arr, shape, 3, INT32);
+ *
+ *     // fill array with crude random values between 0-49
+ *     int32_t val;
+ *     size_t idx[] = {0, 0, 0};
+ *     srand(3331); // specific seed for reproducibility
+ *     for (size_t r = 0; r < arr.arr_shape[0]; ++r)
+ *     {
+ *         idx[0] = r;
+ *         for (size_t c = 0; c < arr.arr_shape[1]; ++c)
+ *         {
+ *             idx[1] = c;
+ *             for (size_t z = 0; z < arr.arr_shape[2]; ++z)
+ *             {
+ *                 idx[2] = z;
+ *                 val = rand() % 50;
+ *                 arr_set(&arr, idx, &val);
+ *             }
+ *         }
+ *     }
+ *
+ *     printf("BEFORE FILTERING:\n======================\n");
+ *     arr_print(&arr);
+ *     printf("\n");
+ *
+ *     // it's best to initialize data to NULL to avoid uninitialized errors
+ *     array filtered = {.data = NULL};
+ *
+ *     // only apply filter to first and third column
+ *     size_t secondary_idx[] = {0,2};
+ *     // this filter checks if ALL columns in the third dimension are > 10 for column 0 and 2
+ *     arr_filter(&arr, &filter, secondary_idx, 2, ALL, &filtered);
+ *
+ *     printf("AFTER FILTERING:\n======================\n");
+ *     arr_print(&filtered);
+ *
+ *     // deallocate
+ *     arr_free(&arr);
+ *     arr_free(&filtered);
+ *
+ *     return 0;
+ * }
+ * @endcode
+ * Output:
+ * @code
+ * BEFORE FILTERING:
+ * ======================
+ * 43 8 25
+ * 26 13 44
+ * 11 44 27
+ *
+ * 26 20 40
+ * 44 19 17
+ * 40 49 47
+ *
+ * 46 20 38
+ * 41 18 16
+ * 31 12 1
+ *
+ *
+ * AFTER FILTERING:
+ * ======================
+ * 43 8 25
+ * 26 13 44
+ * 11 44 27
+ *
+ * 26 20 40
+ * 44 19 17
+ * 40 49 47
+ * @endcode
+ */
+void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type, array* dest);
 #endif //ZUMPY_ZUMPY_H

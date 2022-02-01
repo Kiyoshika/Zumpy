@@ -267,11 +267,6 @@ int cmp(const void* a, const void* b)
 // iterate over the boolean array for secondary index to check if a row should be kept or not
 bool check_row_boolean(filter_type ftype, bool* keep_row_arr, size_t keep_row_arr_size)
 {
-    printf("\nKeep Row Arr (Size %zu):\n", keep_row_arr_size);
-    for (size_t i = 0; i < keep_row_arr_size; ++i)
-        printf("%s ", keep_row_arr[i] ? "true" : "false");
-    printf("\n");
-
     switch(ftype)
     {
         case ANY: // any value in secondary index matches
@@ -288,14 +283,13 @@ bool check_row_boolean(filter_type ftype, bool* keep_row_arr, size_t keep_row_ar
     }
 }
 
-void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type ftype)
+void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type ftype, array* dest)
 {
     size_t* bounds = malloc(sizeof(size_t) * arr->shape_size);
     size_t* current_idx = malloc(sizeof(size_t) * arr->shape_size);
-    size_t total_combinations = 1;
+
     for (size_t i = 0; i < arr->shape_size; ++i)
     {
-        total_combinations *= arr->arr_shape[i];
         bounds[i] = arr->arr_shape[i];
         current_idx[i] = 0; // initially set the index to [0,0,...,0]
     }
@@ -360,15 +354,6 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
 
         if (current_idx[0] == primary_index + 1)
         {
-            printf("New Row Arr:\n");
-            printf("%s - %s - %s - %s - %s - %s\n\n",
-                   keep_row_arr[0] ? "true" : "false",
-                   keep_row_arr[1] ? "true" : "false",
-                   keep_row_arr[2] ? "true" : "false",
-                   keep_row_arr[3] ? "true" : "false",
-                   keep_row_arr[4] ? "true" : "false",
-                   keep_row_arr[5] ? "true" : "false"
-                   );
             row_logical[row_logical_iter] = check_row_boolean(ftype, keep_row_arr, keep_row_arr_size);
             // reset boolean array
             for (size_t i = 0; i < keep_row_arr_size; ++i)
@@ -382,7 +367,6 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
             keep_row_arr[keep_row_iter] = true;
         else
             keep_row_arr[keep_row_iter] = false;
-        printf("Row Iter: %zu; Index: (%zu, %zu, %zu); Value: %d; Expected: %s; Actual: %s\n", keep_row_iter, current_idx[0], current_idx[1], current_idx[2], *(int32_t*)arr_at(arr, current_idx), filter(arr_at(arr, current_idx)) ? "true" : "false", keep_row_arr[keep_row_iter] ? "true" : "false");
 
         current_idx[arr->shape_size - 1]++;
         keep_row_iter++;
@@ -405,13 +389,80 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
 
     // check final row
     row_logical[arr->arr_shape[0] - 1] = check_row_boolean(ftype, keep_row_arr, keep_row_arr_size);
-    for (size_t i = 0; i < arr->arr_shape[0]; ++i)
-        printf("%s\n", row_logical[i] ? "true" : "false");
 
-    // TODO: Take row_logical and populate a new array (or resize current array) with filtered rows.
+    // check how many rows we're keeping to size up new array
+    size_t kept_rows = 0;
+    for (size_t i = 0; i < arr->arr_shape[0]; ++i)
+        if (row_logical[i])
+            kept_rows++;
+
+    size_t* set_index = malloc(sizeof(size_t) * arr->shape_size);
+
+    if (kept_rows > 0)
+    {
+        // free up array if it's not empty already
+        if (dest->data != NULL)
+            arr_free(dest);
+
+        size_t new_shape[arr->shape_size];
+        new_shape[0] = kept_rows;
+        for (size_t i = 1; i < arr->shape_size; ++i)
+            new_shape[i] = arr->arr_shape[i];
+
+        arr_init(dest, new_shape, arr->shape_size, arr->dtype);
+
+        // re-iterate over indices and only populate the indices that match the kept primary indices
+        while (true)
+        {
+            // if we are keeping this row (checked against primary index)
+            if (row_logical[current_idx[0]])
+            {
+                arr_set(dest, set_index, arr_at(arr, current_idx));
+                set_index[dest->shape_size - 1]++;
+                for (size_t i = dest->shape_size; i-- > 0;)
+                {
+                    if (set_index[i] >= bounds[i])
+                    {
+                        set_index[i] = 0;
+                        if (i == 0)
+                            break;
+                        set_index[i-1]++;
+                    }
+                }
+            }
+
+            current_idx[arr->shape_size - 1]++;
+            for (size_t i = arr->shape_size; i-- > 0;)
+            {
+                if (current_idx[i] >= bounds[i])
+                {
+                    current_idx[i] = 0;
+                    if (i == 0)
+                        break;
+                    current_idx[i-1]++;
+                }
+            }
+
+            if (check_index_zero(current_idx, arr->shape_size))
+                break;
+        }
+
+    }
+    else
+    {
+        // if no rows match, make "empty" array with zero shape
+        if (dest->data != NULL)
+            arr_free(dest);
+        size_t new_shape[arr->shape_size];
+        for (size_t i = 0; i < arr->shape_size; ++i)
+            new_shape[i] = 0;
+
+        arr_init(dest, new_shape, arr->shape_size, arr->dtype);
+    }
 
     free(bounds);
     free(current_idx);
+    free(set_index);
     free(keep_row_arr);
     free(row_logical);
     if (secondary_idx_dynamic) // free secondary idx if it was dynamically allocated by algorithm
