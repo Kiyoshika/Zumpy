@@ -397,6 +397,11 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
             kept_rows++;
 
     size_t* set_index = malloc(sizeof(size_t) * arr->shape_size);
+    for (size_t i = 0; i < arr->shape_size; ++i)
+        set_index[i] = 0;
+
+    size_t new_shape[arr->shape_size];
+
 
     if (kept_rows > 0)
     {
@@ -410,7 +415,6 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
             new_shape[i] = arr->arr_shape[i];
 
         arr_init(dest, new_shape, arr->shape_size, arr->dtype);
-
         // re-iterate over indices and only populate the indices that match the kept primary indices
         while (true)
         {
@@ -467,4 +471,5 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
     free(row_logical);
     if (secondary_idx_dynamic) // free secondary idx if it was dynamically allocated by algorithm
         free(secondary_indices);
+
 }
