@@ -11,6 +11,9 @@ However, if you DO want to use it, you can export just the python folder within 
 # The Internals...
 Even though I use the verbage "2D" and "3D" array, internally every array is stored as a one-dimensional void pointer. The multiple dimensions are just mathematical offset calculations to mimick multi-dimensional arrays. Check out the C code if you're interested in how this is done.
 
+# Documenation
+I am using Doxygen to generate LaTex/Man/PDF documentation. For the PDF, go to doc/latex directory and open refman.pdf. There are some known formatting errors in the examples and those will be fixed later. Prioritizing the library functionality over formatting issues at the moment.
+
 # Example
 This is the dummy example of the first working build. This will create a 3x2 array filled with 10s and slice the first column into a separate 3x1 array.
 ```python
