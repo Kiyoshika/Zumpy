@@ -1,5 +1,6 @@
 # python binding for libZumpy.so
 from ctypes import *
+import faulthandler
 
 # load library
 _libZumpy = CDLL('./ext/libZumpy.so')
@@ -39,6 +40,9 @@ _libZumpy.arr_slice.restype = None
 
 _libZumpy.arr_print.argtypes = [POINTER(array_wrapper)]
 _libZumpy.arr_slice.restype = None
+
+_libZumpy.arr_filter.argtypes = [POINTER(array_wrapper), CFUNCTYPE(c_bool, c_void_p), POINTER(c_size_t), c_size_t, c_uint, POINTER(array_wrapper)]
+_libZumpy.arr_filter.restype = None
 
 class array():
     def _get_type_enum(self, dtype):
@@ -140,6 +144,40 @@ class array():
         ret_arr = array(slice_dims, self.dtype)
         ret_arr.arr = ref_arr
 
+        return ret_arr
+
+    def filter(self, filter_func, secondary_indices, filter_type):
+        proto_filter_func = CFUNCTYPE(c_bool, c_void_p)
+        p_filter_func = proto_filter_func(filter_func)
+
+        p_secondary_indices = None
+        if len(secondary_indices) != 0:
+            p_secondary_indices = (c_size_t * len(secondary_indices))(*secondary_indices)
+
+        ftype = None
+        if (filter_type == 'ANY'):
+            ftype = 0
+        elif (filter_type == 'ALL'):
+            ftype = 1
+
+        dest_arr = array_wrapper()
+
+        _libZumpy.arr_filter(byref(self.arr), p_filter_func, p_secondary_indices, c_size_t(len(secondary_indices)), c_uint(ftype), byref(dest_arr))
+
+        # grab contents from struct pointer and convert array
+        # shape into Python list
+        _shape_size = pointer(dest_arr).contents.shape_size
+        _arr_shape = pointer(dest_arr).contents.arr_shape
+        _total_size = pointer(dest_arr).contents.total_size
+        _arr_shape_list = []
+        for i in range(_shape_size):
+            _arr_shape_list.append(_arr_shape[i])
+        ret_arr = array(_arr_shape_list, self.dtype)
+        ret_arr.arr = dest_arr
+
+        # return NULL if filter returned no results
+        if _total_size == 0:
+            return None
         return ret_arr
 
 

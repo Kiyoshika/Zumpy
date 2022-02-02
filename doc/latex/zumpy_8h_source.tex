@@ -1,0 +1,62 @@
+\hypertarget{zumpy_8h_source}{}\doxysection{zumpy.\+h}
+\label{zumpy_8h_source}\index{src/c/include/zumpy.h@{src/c/include/zumpy.h}}
+\mbox{\hyperlink{zumpy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef ZUMPY\_ZUMPY\_H}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00002}00002 \textcolor{preprocessor}{\#define ZUMPY\_ZUMPY\_H}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00004}00004 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00011}\mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2da9cf4a0866224b0bb4a7a895da27c9c4c}{00011}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2dac1081c62db14e24ef35a1c3c36cba2e7}{INT32}}, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2da9cf4a0866224b0bb4a7a895da27c9c4c}{FLOAT}} \} \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00013}\mbox{\hyperlink{structarray}{00013}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00015}\mbox{\hyperlink{structarray_a735984d41155bc1032e09bece8f8d66d}{00015}}     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structarray_a735984d41155bc1032e09bece8f8d66d}{data}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00016}\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{00016}}     \textcolor{keywordtype}{size\_t} *\mbox{\hyperlink{structarray_af9161ca9406f9df8cdf49c637de71409}{arr\_shape}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00017}\mbox{\hyperlink{structarray_a6709d5de34ab8a4ba91a8675d235555c}{00017}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structarray_a6709d5de34ab8a4ba91a8675d235555c}{shape\_size}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00018}\mbox{\hyperlink{structarray_a75badc02f31637f8062a39bc208d7158}{00018}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structarray_a75badc02f31637f8062a39bc208d7158}{type\_size}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00019}\mbox{\hyperlink{structarray_afca1a070ccd72ea11e4b6f83db3b6f46}{00019}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structarray_afca1a070ccd72ea11e4b6f83db3b6f46}{total\_size}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00020}\mbox{\hyperlink{structarray_aad757334515c1d045a8cfb5a7cad61b2}{00020}}     \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}} \mbox{\hyperlink{structarray_aad757334515c1d045a8cfb5a7cad61b2}{dtype}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00021}00021 \} \mbox{\hyperlink{structarray}{array}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00041}\mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{00041}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_afa457401663891d1a6fdec0c30cb8391}{arr\_init}}(\mbox{\hyperlink{structarray}{array}}* arr, \textcolor{keywordtype}{size\_t}* arr\_shape, \textcolor{keywordtype}{size\_t} shape\_size, \mbox{\hyperlink{zumpy_8h_a7aead736a07eaf25623ad7bfa1f0ee2d}{type}} dtype);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00064}\mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{00064}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_a2a6ec0fd57e829bbd4565bd3828d6bbe}{arr\_free}}(\mbox{\hyperlink{structarray}{array}}* arr);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00089}\mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{00089}} \textcolor{keywordtype}{void}* \mbox{\hyperlink{zumpy_8h_a00b92854c89662b5579b8ec8a2a3ffe6}{arr\_at}}(\mbox{\hyperlink{structarray}{array}}* arr, \textcolor{keywordtype}{size\_t}* index);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00123}\mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{00123}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_a8522cf6d232b8f3e78a0e270868a8092}{arr\_set}}(\mbox{\hyperlink{structarray}{array}}* arr, \textcolor{keywordtype}{size\_t}* index, \textcolor{keywordtype}{void}* value);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00182}\mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{00182}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_a004a2a886ea8285e09e4ab1808b7be1f}{arr\_fill}}(\mbox{\hyperlink{structarray}{array}}* arr, \textcolor{keywordtype}{void}* value);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00183}00183 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00185}00185 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00213}\mbox{\hyperlink{zumpy_8h_a58996706d1e643492c7f430291706a94}{00213}} \textcolor{keywordtype}{float} \mbox{\hyperlink{zumpy_8h_a58996706d1e643492c7f430291706a94}{arr\_sum}}(\mbox{\hyperlink{structarray}{array}}* arr);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00215}00215 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00216}00216 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00273}\mbox{\hyperlink{zumpy_8h_acf3af84c10179df1c4c346d66ad9bc3c}{00273}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_acf3af84c10179df1c4c346d66ad9bc3c}{arr\_slice}}(\mbox{\hyperlink{structarray}{array}}* srcarray, \textcolor{keywordtype}{size\_t}** sub\_arr\_idx, \textcolor{keywordtype}{size\_t}* sub\_arr\_dims, \textcolor{keywordtype}{size\_t} sub\_arr\_dims\_len, \mbox{\hyperlink{structarray}{array}}* subarray);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00274}00274 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00275}00275 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00276}00276 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00302}\mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{00302}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_ab20195aaaea1257d769609573c01d5dc}{arr\_print}}(\mbox{\hyperlink{structarray}{array}}* arr);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00303}00303 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00308}\mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72ab1d5eac4b1dca480c8056eaea7663b7a}{00308}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{\mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72aa00374190265e7b6447db44977a7dff1}{ANY}}, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72ab1d5eac4b1dca480c8056eaea7663b7a}{ALL}}\} \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72}{filter\_type}};}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00309}00309 }
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00553}\mbox{\hyperlink{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}{00553}} \textcolor{keywordtype}{void} \mbox{\hyperlink{zumpy_8h_a5b6923bdccd20936399eea2d21678d8c}{arr\_filter}}(\mbox{\hyperlink{structarray}{array}}* arr, \textcolor{keywordtype}{bool} (*filter)(\textcolor{keywordtype}{void}*), \textcolor{keywordtype}{size\_t}* secondary\_indices, \textcolor{keywordtype}{size\_t} secondary\_indices\_size, \mbox{\hyperlink{zumpy_8h_ab3b7281956317556f846daaebf75de72}{filter\_type}}, \mbox{\hyperlink{structarray}{array}}* dest);}
+\DoxyCodeLine{\Hypertarget{zumpy_8h_source_l00554}00554 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//ZUMPY\_ZUMPY\_H}}
+
+\end{DoxyCode}
