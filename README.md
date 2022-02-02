@@ -15,33 +15,65 @@ Even though I use the verbage "2D" and "3D" array, internally every array is sto
 I am using Doxygen to generate LaTex/Man/PDF documentation. For the PDF, go to doc/latex directory and open refman.pdf. There are some known formatting errors in the examples and those will be fixed later. Prioritizing the library functionality over formatting issues at the moment.
 
 # Example
-This is the dummy example of the first working build. This will create a 3x2 array filled with 10s and slice the first column into a separate 3x1 array.
+This is an example highlighting a couple of the current main features. Creating an array, setting values and filtering. There is also array slicing but it's not shown in this example (yet).
 ```python
 from zumpy import array
+from ctypes import *
+from random import randint, seed
 
-# create a 3x2 array filled with 10s
+# set seed for reproducibility
+seed(400)
+
+# the underlying C code uses void* pointers, so we have to cast
+# to an appropriate type for Python to make sense of it
+def myfilter(x):
+    x = cast(x, POINTER(c_int32))
+    return x.contents.value > 10
+
+# create an empty 3x2 array
 arr = array([3,2], 'int32')
-arr.fill(10)
 
-# take all row indices from the 0th column
-subarray = arr.slice([range(arr.shape[0]), [0]])
+# fill array with random values
+for i in range(arr.shape[0]):
+    for j in range(arr.shape[1]):
+        arr[i,j] = randint(0, 50) # set index (i, j) to a random int
+
+# check column index 1 for values greater than 10.
+# since we are filtering on one column, ANY/ALL doesn't
+# make a difference here
+filter_one_column = arr.filter(myfilter, [1], 'ANY')
+
+# passing an empty list will default to check all column indices.
+# we also use the "ALL" setting which means that ALL columns
+# must meet the condition in order for the row to be returned.
+# if ANY is used, then ANY column (at least one column) must
+# match the condition to return a row.
+filter_two_column = arr.filter(myfilter, [], 'ALL')
 
 print("Original Array:")
 print(arr)
 
-print("Subarray:")
-print(subarray)
+print("Filtered Column 1:")
+print(filter_one_column)
+
+print("Filtered Both Columns:")
+print(filter_two_column)
 ```
 
 Output:
 ```
 Original Array:
-10 10 
-10 10 
-10 10 
+19 35 
+16 50 
+5 36 
 
-Subarray:
-10 
-10 
-10 
+Filtered Column 1:
+19 35 
+16 50 
+5 36 
+
+Filtered Both Columns:
+19 35 
+16 50 
 ```
+As you can see in the example, the first filter returned the entire array again because we are only checking index 1 > 10 (the "second" column) in which case all results were true. However the second filter only returned the first two rows since the last row contained a value < 10 and we set the setting to "ALL". If we used "ANY" then it would have returned the entire array as 36 > 10.
