@@ -98,7 +98,12 @@ class array():
         return None
 
     def __getitem__(self, idx):
-        return self.at(idx)
+        temp_idx = []
+        if isinstance(idx, int):
+            temp_idx.append(idx)
+        else:
+            temp_idx = idx
+        return self.at(temp_idx)
 
     def set(self, idx, value):
         idx_arr = (c_size_t * len(idx))(*idx)
@@ -109,7 +114,12 @@ class array():
             _libZumpy.arr_set(byref(self.arr), idx_arr, byref(c_float(value)))
 
     def __setitem__(self, idx, value):
-        self.set(idx, value)
+        temp_idx = []
+        if isinstance(idx, int):
+            temp_idx.append(idx)
+        else:
+            temp_idx = idx
+        self.set(temp_idx, value)
 
     def fill(self, value):
         val_ptr = None
