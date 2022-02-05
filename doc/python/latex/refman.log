@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.31)  5 FEB 2022 00:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.31)  5 FEB 2022 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -925,7 +925,7 @@ Chapter 4.
 
 ]
 Chapter 5.
-(./namespaceexample.tex
+(./namespacezumpy.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 3.
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 6
@@ -935,20 +935,6 @@ File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 6.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 17.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 17
-.
-
-(/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 1
-7.
-
-(/usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
-File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)) (./namespacezumpy.tex
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 8.09995pt on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
@@ -966,51 +952,76 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.29996pt on input line 12.
  [11]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 60.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 60
+.
+
+(/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 60.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 6
+0.
+
+(/usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
+)
 LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <8> not available
 (Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 60.
- [12] [13]
-Underfull \hbox (badness 10000) detected at line 109
+ [12]
+Underfull \hbox (badness 10000) detected at line 119
+[][][]
+ []
+
+[13]
+Underfull \hbox (badness 10000) detected at line 224
 [][][]
  []
 
 [14]
-Underfull \hbox (badness 10000) detected at line 176
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 306.
+ [15]
+Underfull \hbox (badness 10000) detected at line 312
 [][][]
  []
 
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 225.
-[15]) (./classzumpy_1_1array__wrapper.tex <./classzumpy_1_1array__wrapper.pdf>
-<classzumpy_1_1array__wrapper.pdf, id=453, 501.875pt x 276.89445pt>
+[16] [17]
+Underfull \hbox (badness 10000) detected at line 548
+[][][]
+ []
+
+[18]) (./classzumpy_1_1array__wrapper.tex <./classzumpy_1_1array__wrapper.pdf>
+<classzumpy_1_1array__wrapper.pdf, id=421, 501.875pt x 276.89445pt>
 File: classzumpy_1_1array__wrapper.pdf Graphic file (type pdf)
 <use classzumpy_1_1array__wrapper.pdf>
 Package pdftex.def Info: classzumpy_1_1array__wrapper.pdf  used on input line 6
 .
 (pdftex.def)             Requested size: 103.13774pt x 56.9055pt.
 
-[16]) [17] [18
-
-]
+[19]) [20]
 Chapter 7.
-(./example_8py.tex) (./example_8py_source.tex) (./zumpy_8py.tex)
-(./zumpy_8py_source.tex [19] [20] [21]) [22] (./refman.ind [23
+(./zumpy_8py.tex) (./zumpy_8py_source.tex [21
+
+] [22] [23]) [24] (./refman.ind
+[25
 
 
 
 ]) (./refman.aux)
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 3AA6D84F227C2DBDCFAEF1900220B135;8027.
+(rerunfilecheck)             Checksum: 6196A199580920D018177AB580FBD413;6942.
  ) 
 Here is how much of TeX's memory you used:
- 18170 strings out of 478353
- 292356 string characters out of 5854635
- 621332 words of memory out of 5000000
- 35615 multiletter control sequences out of 15000+600000
- 457488 words of font info for 82 fonts, out of 8000000 for 9000
+ 18141 strings out of 478353
+ 291516 string characters out of 5854635
+ 621173 words of memory out of 5000000
+ 35601 multiletter control sequences out of 15000+600000
+ 457195 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,16n,117p,511b,635s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,16n,117p,608b,635s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{classzumpy_1_1array_a1fe47eea8761e420d9af3e1471ac
 d8e7} has been referenced but does not exist, replaced by a fixed one
 
@@ -1020,10 +1031,10 @@ rro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/shar
 e/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texmf-dist/fonts/
 type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/u
 hvro8a.pfb>
-Output written on refman.pdf (27 pages, 115649 bytes).
+Output written on refman.pdf (29 pages, 120216 bytes).
 PDF statistics:
- 953 PDF objects out of 1000 (max. 8388607)
- 900 compressed objects within 9 object streams
- 335 named destinations out of 1000 (max. 500000)
- 382 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 896 PDF objects out of 1000 (max. 8388607)
+ 841 compressed objects within 9 object streams
+ 327 named destinations out of 1000 (max. 500000)
+ 334 words of extra memory for PDF output out of 10000 (max. 10000000)
 

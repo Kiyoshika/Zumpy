@@ -61,154 +61,165 @@
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00058}\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{00058}}     shape = \textcolor{keywordtype}{None}}
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00059}00059 }
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00060}00060     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00063}\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{00063}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}}(self, shape, dtype = 'int32'):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00064}00064 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00065}00065         self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}} = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00066}00066         self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} = dtype}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00067}00067         self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}} = shape}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00068}00068 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00069}00069         arr\_ptr = pointer(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00070}00070 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00071}00071         shape\_size = len(self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00072}00072         shape\_arr = (c\_size\_t * len(self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}}))(*self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00073}00073 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00074}00074         type\_enum = self.\mbox{\hyperlink{classzumpy_1_1array_a1fe47eea8761e420d9af3e1471acd8e7}{\_get\_type\_enum}}(self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00075}00075 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00076}00076         \_libZumpy.arr\_init(arr\_ptr, shape\_arr, shape\_size, type\_enum)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00077}00077 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00078}00078     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00081}\mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{00081}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{\_\_init\_\_}}(self, shape = None, dtype = 'int32'):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00082}00082         \textcolor{keywordflow}{if} shape != \textcolor{keywordtype}{None}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00083}00083             self.\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}}(shape, dtype)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00084}00084 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00085}00085     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00087}\mbox{\hyperlink{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}{00087}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}{\_\_del\_\_}}(self):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00088}00088         arr\_ptr = pointer(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00089}00089         \_libZumpy.arr\_free(arr\_ptr)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00090}00090 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00091}00091     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00093}\mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{00093}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{\_\_str\_\_}}(self):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00094}00094         arr\_ptr = pointer(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00095}00095         \_libZumpy.arr\_print(arr\_ptr)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00096}00096         \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}"{}}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00097}00097 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00098}00098     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00100}\mbox{\hyperlink{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}{00100}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}{\_\_repr\_\_}}(self):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00101}00101         self.\mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{\_\_str\_\_}}()}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00102}00102 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00103}00103     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00111}\mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{00111}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{at}}(self, idx):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00112}00112         temp\_idx = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00113}00113         \textcolor{keywordflow}{if} isinstance(idx, int):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00114}00114             temp\_idx.append(idx)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00115}00115         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00116}00116             temp\_idx = idx}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00117}00117 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00118}00118         idx\_arr = (c\_size\_t * len(temp\_idx))(*temp\_idx)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00119}00119         \textcolor{comment}{\# dereference different types}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00120}00120         \textcolor{keywordflow}{if} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'int32'}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00121}00121             \textcolor{keywordflow}{return} cast(cast(\_libZumpy.arr\_at(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr), c\_void\_p), POINTER(c\_int32)).contents.value}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00122}00122         \textcolor{keywordflow}{elif} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'float'}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00123}00123             \textcolor{keywordflow}{return} cast(cast(\_libZumpy.arr\_at(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr), c\_void\_p), POINTER(c\_float)).contents.value}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00124}00124 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00125}00125         \textcolor{keywordflow}{return} \textcolor{keywordtype}{None}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00126}00126 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00127}00127     }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00136}\mbox{\hyperlink{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}{00136}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}{\_\_getitem\_\_}}(self, idx):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00137}00137         temp\_idx = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00138}00138         \textcolor{keywordflow}{if} isinstance(idx, int):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00139}00139             temp\_idx.append(idx)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00140}00140         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00141}00141             temp\_idx = idx}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00142}00142         \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{at}}(temp\_idx)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00143}00143 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00144}\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{00144}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{set}}(self, idx, value):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00145}00145         idx\_arr = (c\_size\_t * len(idx))(*idx)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00146}00146 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00147}00147         \textcolor{keywordflow}{if} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'int32'}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00148}00148             \_libZumpy.arr\_set(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr, byref(c\_int32(value)))}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00149}00149         \textcolor{keywordflow}{elif} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'float'}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00150}00150             \_libZumpy.arr\_set(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr, byref(c\_float(value)))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00073}\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{00073}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}}(self, shape, dtype = 'int32'):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00075}00075         self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}} = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00076}00076         self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} = dtype}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00077}00077         self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}} = shape}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00079}00079         arr\_ptr = pointer(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00081}00081         shape\_size = len(self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00082}00082         shape\_arr = (c\_size\_t * len(self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}}))(*self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00084}00084         type\_enum = self.\mbox{\hyperlink{classzumpy_1_1array_a1fe47eea8761e420d9af3e1471acd8e7}{\_get\_type\_enum}}(self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00086}00086         \_libZumpy.arr\_init(arr\_ptr, shape\_arr, shape\_size, type\_enum)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00088}00088     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00100}\mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{00100}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{\_\_init\_\_}}(self, shape = None, dtype = 'int32'):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00101}00101         \textcolor{keywordflow}{if} shape != \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00102}00102             self.\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}}(shape, dtype)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00104}00104     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00106}\mbox{\hyperlink{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}{00106}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}{\_\_del\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00107}00107         arr\_ptr = pointer(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00108}00108         \_libZumpy.arr\_free(arr\_ptr)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00110}00110     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00118}\mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{00118}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{\_\_str\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00119}00119         arr\_ptr = pointer(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00120}00120         \_libZumpy.arr\_print(arr\_ptr)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00121}00121         \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00123}00123     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00131}\mbox{\hyperlink{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}{00131}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}{\_\_repr\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00132}00132         self.\mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{\_\_str\_\_}}()}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00134}00134     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00145}\mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{00145}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{at}}(self, idx):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00146}00146         temp\_idx = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00147}00147         \textcolor{keywordflow}{if} isinstance(idx, int):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00148}00148             temp\_idx.append(idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00149}00149         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00150}00150             temp\_idx = idx}
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00151}00151 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00152}\mbox{\hyperlink{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}{00152}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}{\_\_setitem\_\_}}(self, idx, value):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00153}00153         temp\_idx = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00154}00154         \textcolor{keywordflow}{if} isinstance(idx, int):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00155}00155             temp\_idx.append(idx)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00156}00156         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00157}00157             temp\_idx = idx}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00158}00158         self.\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{set}}(temp\_idx, value)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00159}00159 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00160}\mbox{\hyperlink{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}{00160}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}{fill}}(self, value):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00161}00161         val\_ptr = \textcolor{keywordtype}{None}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00162}00162         \textcolor{keywordflow}{if} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'int32'}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00163}00163             val\_ptr = cast(byref(c\_int32(value)), c\_void\_p)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00164}00164         \textcolor{keywordflow}{elif} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'float'}:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00165}00165             val\_ptr = cast(byref(c\_float(value)), c\_void\_p)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00166}00166         \_libZumpy.arr\_fill(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), val\_ptr)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00167}00167 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00168}\mbox{\hyperlink{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}{00168}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}{slice}}(self, slice\_indices):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00169}00169         \textcolor{comment}{\# slice indices should be a list of lists}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00170}00170         \textcolor{comment}{\# convert slice\_indices to size\_t** (pointer to pointer of size\_t)}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00171}00171         arr\_inner = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00172}00172         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(slice\_indices)):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00173}00173             arr\_inner.append((c\_size\_t * len(slice\_indices[i]))(*slice\_indices[i]))}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00174}00174 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00175}00175         arr\_outer = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00176}00176         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(arr\_inner)):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00177}00177             arr\_outer.append(arr\_inner[i])}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00178}00178 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00179}00179         pp\_slice\_indices = (POINTER(c\_size\_t) * len(arr\_outer))(*arr\_outer)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00152}00152         idx\_arr = (c\_size\_t * len(temp\_idx))(*temp\_idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00153}00153         \textcolor{comment}{\# dereference different types}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00154}00154         \textcolor{keywordflow}{if} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'int32'}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00155}00155             \textcolor{keywordflow}{return} cast(cast(\_libZumpy.arr\_at(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr), c\_void\_p), POINTER(c\_int32)).contents.value}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00156}00156         \textcolor{keywordflow}{elif} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'float'}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00157}00157             \textcolor{keywordflow}{return} cast(cast(\_libZumpy.arr\_at(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr), c\_void\_p), POINTER(c\_float)).contents.value}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00159}00159         \textcolor{keywordflow}{return} \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00160}00160 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00161}00161     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00173}\mbox{\hyperlink{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}{00173}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}{\_\_getitem\_\_}}(self, idx):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00174}00174         temp\_idx = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00175}00175         \textcolor{keywordflow}{if} isinstance(idx, int):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00176}00176             temp\_idx.append(idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00177}00177         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00178}00178             temp\_idx = idx}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00179}00179         \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{at}}(temp\_idx)}
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00180}00180 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00181}00181         slice\_idx\_len = len(slice\_indices)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00182}00182         slice\_dims = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00183}00183         \textcolor{keywordflow}{for} idx \textcolor{keywordflow}{in} slice\_indices:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00184}00184             slice\_dims.append(len(idx))}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00185}00185 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00186}00186         ref\_arr = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00187}00187         p\_slice\_dims = (c\_size\_t * len(slice\_dims))(*slice\_dims)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00188}00188         \_libZumpy.arr\_slice(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), pp\_slice\_indices, p\_slice\_dims, c\_size\_t(slice\_idx\_len), byref(ref\_arr))}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00189}00189 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00190}00190         ret\_arr = \mbox{\hyperlink{classzumpy_1_1array}{array}}(slice\_dims, self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00191}00191         ret\_arr.arr = ref\_arr}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00192}00192 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00193}00193         \textcolor{keywordflow}{return} ret\_arr}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00194}00194 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00195}\mbox{\hyperlink{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}{00195}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}{filter}}(self, filter\_func, secondary\_indices, filter\_type):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00196}00196         proto\_filter\_func = CFUNCTYPE(c\_bool, c\_void\_p)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00197}00197         p\_filter\_func = proto\_filter\_func(filter\_func)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00181}00181     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00192}\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{00192}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{set}}(self, idx, value):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00193}00193         temp\_idx = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00194}00194         \textcolor{keywordflow}{if} isinstance(idx, int):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00195}00195             temp\_idx.append(idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00196}00196         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00197}00197             temp\_idx = idx}
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00198}00198 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00199}00199         p\_secondary\_indices = \textcolor{keywordtype}{None}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00200}00200         \textcolor{keywordflow}{if} len(secondary\_indices) != 0:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00201}00201             p\_secondary\_indices = (c\_size\_t * len(secondary\_indices))(*secondary\_indices)}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00202}00202 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00203}00203         ftype = \textcolor{keywordtype}{None}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00204}00204         \textcolor{keywordflow}{if} (filter\_type == \textcolor{stringliteral}{'ANY'}):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00205}00205             ftype = 0}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00206}00206         \textcolor{keywordflow}{elif} (filter\_type == \textcolor{stringliteral}{'ALL'}):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00207}00207             ftype = 1}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00208}00208 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00209}00209         dest\_arr = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00210}00210 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00211}00211         \_libZumpy.arr\_filter(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), p\_filter\_func, p\_secondary\_indices, c\_size\_t(len(secondary\_indices)), c\_uint(ftype), byref(dest\_arr))}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00212}00212 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00213}00213         \textcolor{comment}{\# grab contents from struct pointer and convert array}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00214}00214         \textcolor{comment}{\# shape into Python list}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00215}00215         \_shape\_size = pointer(dest\_arr).contents.shape\_size}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00216}00216         \_arr\_shape = pointer(dest\_arr).contents.arr\_shape}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00217}00217         \_total\_size = pointer(dest\_arr).contents.total\_size}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00218}00218         \_arr\_shape\_list = []}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00219}00219         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(\_shape\_size):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00220}00220             \_arr\_shape\_list.append(\_arr\_shape[i])}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00221}00221         ret\_arr = \mbox{\hyperlink{classzumpy_1_1array}{array}}(\_arr\_shape\_list, self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}})}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00222}00222         ret\_arr.arr = dest\_arr}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00223}00223 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00224}00224         \textcolor{comment}{\# return NULL if filter returned no results}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00225}00225         \textcolor{keywordflow}{if} \_total\_size == 0:}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00226}00226             \textcolor{keywordflow}{return} \textcolor{keywordtype}{None}}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00227}00227         \textcolor{keywordflow}{return} ret\_arr}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00228}00228 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00229}00229 }
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00230}\mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{00230}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{sum}}(self):}
-\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00231}00231         \textcolor{keywordflow}{return} \_libZumpy.arr\_sum(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00199}00199         idx\_arr = (c\_size\_t * len(idx))(*idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00200}00200 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00201}00201         \textcolor{keywordflow}{if} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'int32'}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00202}00202             \_libZumpy.arr\_set(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr, byref(c\_int32(value)))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00203}00203         \textcolor{keywordflow}{elif} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'float'}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00204}00204             \_libZumpy.arr\_set(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), idx\_arr, byref(c\_float(value)))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00206}00206     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00217}\mbox{\hyperlink{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}{00217}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}{\_\_setitem\_\_}}(self, idx, value):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00218}00218         temp\_idx = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00219}00219         \textcolor{keywordflow}{if} isinstance(idx, int):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00220}00220             temp\_idx.append(idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00221}00221         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00222}00222             temp\_idx = idx}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00223}00223         self.\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{set}}(temp\_idx, value)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00224}00224 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00225}00225     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00238}\mbox{\hyperlink{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}{00238}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}{fill}}(self, value):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00239}00239         val\_ptr = \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00240}00240         \textcolor{keywordflow}{if} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'int32'}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00241}00241             val\_ptr = cast(byref(c\_int32(value)), c\_void\_p)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00242}00242         \textcolor{keywordflow}{elif} self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} == \textcolor{stringliteral}{'float'}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00243}00243             val\_ptr = cast(byref(c\_float(value)), c\_void\_p)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00244}00244         \_libZumpy.arr\_fill(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), val\_ptr)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00245}00245 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00246}00246     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00332}\mbox{\hyperlink{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}{00332}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}{slice}}(self, slice\_indices):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00333}00333         \textcolor{comment}{\# slice indices should be a list of lists}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00334}00334         \textcolor{comment}{\# convert slice\_indices to size\_t** (pointer to pointer of size\_t)}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00335}00335         arr\_inner = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00336}00336         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(slice\_indices)):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00337}00337             arr\_inner.append((c\_size\_t * len(slice\_indices[i]))(*slice\_indices[i]))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00338}00338 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00339}00339         arr\_outer = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00340}00340         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(arr\_inner)):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00341}00341             arr\_outer.append(arr\_inner[i])}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00342}00342 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00343}00343         pp\_slice\_indices = (POINTER(c\_size\_t) * len(arr\_outer))(*arr\_outer)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00344}00344 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00345}00345         slice\_idx\_len = len(slice\_indices)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00346}00346         slice\_dims = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00347}00347         \textcolor{keywordflow}{for} idx \textcolor{keywordflow}{in} slice\_indices:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00348}00348             slice\_dims.append(len(idx))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00349}00349 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00350}00350         ref\_arr = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00351}00351         p\_slice\_dims = (c\_size\_t * len(slice\_dims))(*slice\_dims)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00352}00352         \_libZumpy.arr\_slice(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), pp\_slice\_indices, p\_slice\_dims, c\_size\_t(slice\_idx\_len), byref(ref\_arr))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00353}00353 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00354}00354         ret\_arr = \mbox{\hyperlink{classzumpy_1_1array}{array}}(slice\_dims, self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00355}00355         ret\_arr.arr = ref\_arr}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00356}00356 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00357}00357         \textcolor{keywordflow}{return} ret\_arr}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00359}00359     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00427}\mbox{\hyperlink{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}{00427}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}{filter}}(self, filter\_func, secondary\_indices, filter\_type):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00428}00428         proto\_filter\_func = CFUNCTYPE(c\_bool, c\_void\_p)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00429}00429         p\_filter\_func = proto\_filter\_func(filter\_func)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00430}00430 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00431}00431         p\_secondary\_indices = \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00432}00432         \textcolor{keywordflow}{if} len(secondary\_indices) != 0:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00433}00433             p\_secondary\_indices = (c\_size\_t * len(secondary\_indices))(*secondary\_indices)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00434}00434 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00435}00435         ftype = \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00436}00436         \textcolor{keywordflow}{if} (filter\_type == \textcolor{stringliteral}{'ANY'}):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00437}00437             ftype = 0}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00438}00438         \textcolor{keywordflow}{elif} (filter\_type == \textcolor{stringliteral}{'ALL'}):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00439}00439             ftype = 1}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00440}00440 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00441}00441         dest\_arr = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00442}00442 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00443}00443         \_libZumpy.arr\_filter(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}), p\_filter\_func, p\_secondary\_indices, c\_size\_t(len(secondary\_indices)), c\_uint(ftype), byref(dest\_arr))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00444}00444 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00445}00445         \textcolor{comment}{\# grab contents from struct pointer and convert array}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00446}00446         \textcolor{comment}{\# shape into Python list}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00447}00447         \_shape\_size = pointer(dest\_arr).contents.shape\_size}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00448}00448         \_arr\_shape = pointer(dest\_arr).contents.arr\_shape}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00449}00449         \_total\_size = pointer(dest\_arr).contents.total\_size}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00450}00450         \_arr\_shape\_list = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00451}00451         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(\_shape\_size):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00452}00452             \_arr\_shape\_list.append(\_arr\_shape[i])}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00453}00453         ret\_arr = \mbox{\hyperlink{classzumpy_1_1array}{array}}(\_arr\_shape\_list, self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}})}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00454}00454         ret\_arr.arr = dest\_arr}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00455}00455 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00456}00456         \textcolor{comment}{\# return NULL if filter returned no results}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00457}00457         \textcolor{keywordflow}{if} \_total\_size == 0:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00458}00458             \textcolor{keywordflow}{return} \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00459}00459         \textcolor{keywordflow}{return} ret\_arr}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00460}00460 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00461}00461     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00499}\mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{00499}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{sum}}(self):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00500}00500         \textcolor{keywordflow}{return} \_libZumpy.arr\_sum(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}))}
 
 \end{DoxyCode}

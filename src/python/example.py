@@ -1,13 +1,18 @@
 from zumpy import array
+from random import randint, seed
 
 arr = array()
-arr.create([5], 'int32')
-arr.fill(10)
-arr[2] = 22
+arr.create([5,2], 'int32')
 
-print(arr.at(2))
+# set seed for reproducibility
+seed(5021)
 
-arr2 = array([3,3], 'int32')
-arr2.fill(20)
+# fill array with random values
+for i in range(arr.shape[0]):
+    for j in range(arr.shape[1]):
+        arr[i,j] = randint(0,50)
 
-print(arr2.at([0,2]))
+print("Full Array:")
+print(arr)
+
+print("Sum: ", arr.sum())
