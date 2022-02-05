@@ -44,6 +44,8 @@ _libZumpy.arr_slice.restype = None
 _libZumpy.arr_filter.argtypes = [POINTER(array_wrapper), CFUNCTYPE(c_bool, c_void_p), POINTER(c_size_t), c_size_t, c_uint, POINTER(array_wrapper)]
 _libZumpy.arr_filter.restype = None
 
+## Array Module
+# A simple array class that handles arbitrary dimensions for integer and float types.
 class array():
     def _get_type_enum(self, dtype):
         if dtype == 'int32':
@@ -55,6 +57,15 @@ class array():
     dtype = None
     shape = None
 
+    ## Create/Initialize an empty array with specified size/dimension and data type.
+    # @param shape A list specifying the shape/dimension, e.g [3, 2] for a 3x2 array.
+    # @param dtype A string specifying the data type of the array. One of ('int32', 'float'). By default, it's 'int32'.
+    # Example:
+    # @code
+    # # create 3x2 array of 32-bit integers
+    # myarray = array()
+    # myarray.create([3,2], 'int32')
+    # @endcode
     def create(self, shape, dtype = 'int32'):
 
         self.arr = array_wrapper()
@@ -70,25 +81,61 @@ class array():
 
         _libZumpy.arr_init(arr_ptr, shape_arr, shape_size, type_enum)
 
+    ## Constructor for array class. Calls create(self, shape, dtype) method.
+    # @param shape A list specifying the shape/dimension, e.g [3, 2] for a 3x2 array.
+    # @param dtype A string specifying the data type of the array. One of ('int32', 'float'). By default, it's 'int32'.
+    # Example:
+    # @code
+    # # create 3x2 array of 32-bit integers
+    # myarray = array([3,2], 'int32')
+    # @endcode
     def __init__(self, shape = None, dtype = 'int32'):
         if shape != None:
             self.create(shape, dtype)
 
+    ## Destructor to deallocate memory from the array. This probably won't ever need to be manually called by the user.
+    # This should handle the memory management behind the scenes interacting with the C code to avoid memory leaks.
     def __del__(self):
         arr_ptr = pointer(self.arr)
         _libZumpy.arr_free(arr_ptr)
 
-    # override the print() call
+    ## Override print() call to print the contents of an array.
+    # Calls custom print() function implemented in C to output contents in the console.
+    # Example:
+    # @code
+    # print(myarray)
+    # @endcode
     def __str__(self):
         arr_ptr = pointer(self.arr)
         _libZumpy.arr_print(arr_ptr)
         return ""
 
+    ## Override print() call to print the contents of an array.
+    # Calls custom print() function implemented in C to output contents in the console.
+    # Example:
+    # @code
+    # print(myarray)
+    # @endcode
     def __repr__(self):
         self.__str__()
 
+    ## Access an element by index.
+    # @param idx A list specifying the index. E.g [1, 2] will access the element at the second row and third column (zero-indexed).
+    # @return Returns the value at the specified index.
+    # Example:
+    # @code
+    # myarray.at(2) # access third element in 1D array
+    # # note that higher dimensions require list syntax as below:
+    # myarray.at([1,4]) # access (1,4)th element in 2D array
+    # @endcode
     def at(self, idx):
-        idx_arr = (c_size_t * len(idx))(*idx)
+        temp_idx = []
+        if isinstance(idx, int):
+            temp_idx.append(idx)
+        else:
+            temp_idx = idx
+
+        idx_arr = (c_size_t * len(temp_idx))(*temp_idx)
         # dereference different types
         if self.dtype == 'int32':
             return cast(cast(_libZumpy.arr_at(byref(self.arr), idx_arr), c_void_p), POINTER(c_int32)).contents.value
@@ -97,6 +144,15 @@ class array():
 
         return None
 
+    ## Access an element by index.
+    # This is a wrapper around the zumpy.array.at(self, idx) method to use convenient square bracket syntax.
+    # @param idx A list specifying the index. E.g [1, 2] will access the element at the second row and third column (zero-indexed).
+    # @return Returns the value at the specified index.
+    # @code
+    # myarray[3]     # access the fourth element in a 1D array
+    # myarray[1,2]   # access the (1,2)th element in a 2D array
+    # myarray[2,1,1] # so on and so forth...I think you get the idea
+    # @endcode
     def __getitem__(self, idx):
         temp_idx = []
         if isinstance(idx, int):

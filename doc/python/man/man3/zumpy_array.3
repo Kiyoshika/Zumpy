@@ -1,0 +1,225 @@
+.TH "zumpy.array" 3 "Sat Feb 5 2022" "Zumpy" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+zumpy.array \- Array Module A simple array class that handles arbitrary dimensions for integer and float types\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBcreate\fP (self, \fBshape\fP, \fBdtype\fP='int32')"
+.br
+.RI "Create/Initialize an empty array with specified size/dimension and data type\&. "
+.ti -1c
+.RI "def \fB__init__\fP (self, \fBshape\fP=None, \fBdtype\fP='int32')"
+.br
+.RI "Constructor for array class\&. "
+.ti -1c
+.RI "def \fB__del__\fP (self)"
+.br
+.RI "Destructor to deallocate memory from the array\&. "
+.ti -1c
+.RI "def \fB__str__\fP (self)"
+.br
+.RI "Override print() call to print the contents of an array\&. "
+.ti -1c
+.RI "def \fB__repr__\fP (self)"
+.br
+.RI "Override print() call to print the contents of an array\&. "
+.ti -1c
+.RI "def \fBat\fP (self, idx)"
+.br
+.RI "Access an element by index\&. "
+.ti -1c
+.RI "def \fB__getitem__\fP (self, idx)"
+.br
+.RI "Access an element by index\&. "
+.ti -1c
+.RI "def \fBset\fP (self, idx, value)"
+.br
+.ti -1c
+.RI "def \fB__setitem__\fP (self, idx, value)"
+.br
+.ti -1c
+.RI "def \fBfill\fP (self, value)"
+.br
+.ti -1c
+.RI "def \fBslice\fP (self, slice_indices)"
+.br
+.ti -1c
+.RI "def \fBfilter\fP (self, filter_func, secondary_indices, filter_type)"
+.br
+.ti -1c
+.RI "def \fBsum\fP (self)"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBarr\fP = None"
+.br
+.ti -1c
+.RI "\fBdtype\fP = None"
+.br
+.ti -1c
+.RI "\fBshape\fP = None"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Array Module A simple array class that handles arbitrary dimensions for integer and float types\&. 
+.PP
+Definition at line \fB49\fP of file \fBzumpy\&.py\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def zumpy\&.array\&.__init__ ( self,  shape = \fCNone\fP,  dtype = \fC'int32'\fP)"
+
+.PP
+Constructor for array class\&. Calls create(self, shape, dtype) method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP A list specifying the shape/dimension, e\&.g [3, 2] for a 3x2 array\&. 
+.br
+\fIdtype\fP A string specifying the data type of the array\&. One of ('int32', 'float')\&. By default, it's 'int32'\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB81\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__del__ ( self)"
+
+.PP
+Destructor to deallocate memory from the array\&. This probably won't ever need to be manually called by the user\&. This should handle the memory management behind the scenes interacting with the C code to avoid memory leaks\&. 
+.PP
+Definition at line \fB87\fP of file \fBzumpy\&.py\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def zumpy\&.array\&.__getitem__ ( self,  idx)"
+
+.PP
+Access an element by index\&. This is a wrapper around the zumpy\&.array\&.at(self, idx) method to use convenient square bracket syntax\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP A list specifying the index\&. E\&.g [1, 2] will access the element at the second row and third column (zero-indexed)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the value at the specified index\&. 
+.PP
+.nf
+myarray[3]     # access the fourth element in a 1D array
+myarray[1,2]   # access the (1,2)th element in a 2D array
+myarray[2,1,1] # so on and so forth\&.\&.\&.I think you get the idea
+
+.fi
+.PP
+ 
+.RE
+.PP
+
+.PP
+Definition at line \fB136\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__repr__ ( self)"
+
+.PP
+Override print() call to print the contents of an array\&. Calls custom print() function implemented in C to output contents in the console\&. 
+.PP
+Definition at line \fB100\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__setitem__ ( self,  idx,  value)"
+
+.PP
+Definition at line \fB152\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__str__ ( self)"
+
+.PP
+Override print() call to print the contents of an array\&. Calls custom print() function implemented in C to output contents in the console\&. 
+.PP
+Definition at line \fB93\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.at ( self,  idx)"
+
+.PP
+Access an element by index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP A list specifying the index\&. E\&.g [1, 2] will access the element at the second row and third column (zero-indexed)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the value at the specified index\&. 
+.PP
+.nf
+myarray\&.at(2) # access third element in 1D array
+# note that higher dimensions require list syntax as below:
+myarray\&.at([1,4]) # access (1,4)th element in 2D array
+
+.fi
+.PP
+ 
+.RE
+.PP
+
+.PP
+Definition at line \fB111\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.create ( self,  shape,  dtype = \fC'int32'\fP)"
+
+.PP
+Create/Initialize an empty array with specified size/dimension and data type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP A list specifying the shape/dimension, e\&.g [3, 2] for a 3x2 array\&. 
+.br
+\fIdtype\fP A string specifying the data type of the array\&. One of ('int32', 'float')\&. By default, it's 'int32'\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB63\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.fill ( self,  value)"
+
+.PP
+Definition at line \fB160\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.filter ( self,  filter_func,  secondary_indices,  filter_type)"
+
+.PP
+Definition at line \fB195\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.set ( self,  idx,  value)"
+
+.PP
+Definition at line \fB144\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.slice ( self,  slice_indices)"
+
+.PP
+Definition at line \fB168\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.sum ( self)"
+
+.PP
+Definition at line \fB230\fP of file \fBzumpy\&.py\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "zumpy\&.array\&.arr = None\fC [static]\fP"
+
+.PP
+Definition at line \fB56\fP of file \fBzumpy\&.py\fP\&.
+.SS "zumpy\&.array\&.dtype = None\fC [static]\fP"
+
+.PP
+Definition at line \fB57\fP of file \fBzumpy\&.py\fP\&.
+.SS "zumpy\&.array\&.shape = None\fC [static]\fP"
+
+.PP
+Definition at line \fB58\fP of file \fBzumpy\&.py\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Zumpy from the source code\&.
