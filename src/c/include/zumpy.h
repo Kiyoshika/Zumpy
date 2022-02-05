@@ -246,16 +246,8 @@ float arr_sum(array* arr);
  * // slice the first column
  * arr_slice(&arr, sub_arr_index, dims, 2, &sub);
  *
- * // print our sliced array (TODO: implement a generic method to do this; this is messy!!)
- * size_t idx[2] = {0,0};
- * for (size_t i = 0; i < sub.arr_shape[0]; ++i) {
- *    idx[0] = i;
- *    for (size_t j = 0; j < sub.arr_shape[1]; ++j) {
- *         idx[1] = j;
- *         printf("%d ", *(int32_t *)arr_at(&sub, idx));
- *     }
- *     printf("\n");
- * }
+ * // print our sliced array
+ * arr_print(&sub);
  *
  * arr_free(&arr);
  * arr_free(&sub);

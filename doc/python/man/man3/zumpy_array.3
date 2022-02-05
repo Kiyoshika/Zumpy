@@ -1,0 +1,560 @@
+.TH "zumpy.array" 3 "Sat Feb 5 2022" "Zumpy" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+zumpy.array \- Array Module A simple array class that handles arbitrary dimensions for integer and float types\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBcreate\fP (self, \fBshape\fP, \fBdtype\fP='int32')"
+.br
+.RI "Create/Initialize an empty array with specified size/dimension and data type\&. "
+.ti -1c
+.RI "def \fB__init__\fP (self, \fBshape\fP=None, \fBdtype\fP='int32')"
+.br
+.RI "Constructor for array class\&. "
+.ti -1c
+.RI "def \fB__del__\fP (self)"
+.br
+.RI "Destructor to deallocate memory from the array\&. "
+.ti -1c
+.RI "def \fB__str__\fP (self)"
+.br
+.RI "Override print() call to print the contents of an array\&. "
+.ti -1c
+.RI "def \fB__repr__\fP (self)"
+.br
+.RI "Override print() call to print the contents of an array\&. "
+.ti -1c
+.RI "def \fBat\fP (self, idx)"
+.br
+.RI "Access an element by index\&. "
+.ti -1c
+.RI "def \fB__getitem__\fP (self, idx)"
+.br
+.RI "Access an element by index\&. "
+.ti -1c
+.RI "def \fBset\fP (self, idx, value)"
+.br
+.RI "Set an element by index\&. "
+.ti -1c
+.RI "def \fB__setitem__\fP (self, idx, value)"
+.br
+.RI "Set an element by index\&. "
+.ti -1c
+.RI "def \fBfill\fP (self, value)"
+.br
+.RI "Fill all cells with a specified value This will set every index of the array to the same value\&. "
+.ti -1c
+.RI "def \fBslice\fP (self, slice_indices)"
+.br
+.RI "Slice an array to extract subsets\&. "
+.ti -1c
+.RI "def \fBfilter\fP (self, filter_func, secondary_indices, filter_type)"
+.br
+.RI "Filter an array based on user-defined condition\&. "
+.ti -1c
+.RI "def \fBsum\fP (self)"
+.br
+.RI "Sum all indices of an array\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBarr\fP = None"
+.br
+.ti -1c
+.RI "\fBdtype\fP = None"
+.br
+.ti -1c
+.RI "\fBshape\fP = None"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Array Module A simple array class that handles arbitrary dimensions for integer and float types\&. 
+.PP
+Definition at line \fB49\fP of file \fBzumpy\&.py\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def zumpy\&.array\&.__init__ ( self,  shape = \fCNone\fP,  dtype = \fC'int32'\fP)"
+
+.PP
+Constructor for array class\&. Calls create(self, shape, dtype) method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP A list specifying the shape/dimension, e\&.g [3, 2] for a 3x2 array\&. 
+.br
+\fIdtype\fP A string specifying the data type of the array\&. One of ('int32', 'float')\&. By default, it's 'int32'\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+
+# create 3x2 array of 32-bit integers
+myarray = array([3,2], 'int32')
+.fi
+.PP
+ 
+.PP
+Definition at line \fB100\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__del__ ( self)"
+
+.PP
+Destructor to deallocate memory from the array\&. This probably won't ever need to be manually called by the user\&. This should handle the memory management behind the scenes interacting with the C code to avoid memory leaks\&. 
+.PP
+Definition at line \fB106\fP of file \fBzumpy\&.py\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def zumpy\&.array\&.__getitem__ ( self,  idx)"
+
+.PP
+Access an element by index\&. This is a wrapper around the zumpy\&.array\&.at(self, idx) method to use convenient square bracket syntax\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP A list specifying the index\&. E\&.g [1, 2] will access the element at the second row and third column (zero-indexed)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the value at the specified index\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+myarray[3]     # access the fourth element in a 1D array
+myarray[1,2]   # access the (1,2)th element in a 2D array
+myarray[2,1,1] # so on and so forth\&.\&.\&.I think you get the idea
+.fi
+.PP
+ 
+.PP
+Definition at line \fB173\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__repr__ ( self)"
+
+.PP
+Override print() call to print the contents of an array\&. Calls custom print() function implemented in C to output contents in the console\&.
+.PP
+Example:
+.PP
+.PP
+.nf
+print(myarray)
+.fi
+.PP
+ 
+.PP
+Definition at line \fB131\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__setitem__ ( self,  idx,  value)"
+
+.PP
+Set an element by index\&. This is a wrapper around the zumpy\&.array\&.set(self, idx, value) method to use convenient square bracket syntax\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP A list specifying the index\&. E\&.g [1, 2] will access the element at the second row and third column (zero-indexed)\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+myarray[3] = 10     # 1D array
+myarray[1,2] = 10   # 2D array
+myarray[2,1,1] = 10 # 3D array
+.fi
+.PP
+ 
+.PP
+Definition at line \fB217\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.__str__ ( self)"
+
+.PP
+Override print() call to print the contents of an array\&. Calls custom print() function implemented in C to output contents in the console\&.
+.PP
+Example:
+.PP
+.PP
+.nf
+print(myarray)
+.fi
+.PP
+ 
+.PP
+Definition at line \fB118\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.at ( self,  idx)"
+
+.PP
+Access an element by index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP A list (or integer for 1D) specifying the index\&. E\&.g [1, 2] will access the element at the second row and third column (zero-indexed)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the value at the specified index\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+myarray\&.at(2) # access third element in 1D array
+# note that higher dimensions require list syntax as below:
+myarray\&.at([1,4]) # access (1,4)th element in 2D array
+.fi
+.PP
+ 
+.PP
+Definition at line \fB145\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.create ( self,  shape,  dtype = \fC'int32'\fP)"
+
+.PP
+Create/Initialize an empty array with specified size/dimension and data type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP A list specifying the shape/dimension, e\&.g [3, 2] for a 3x2 array\&. 
+.br
+\fIdtype\fP A string specifying the data type of the array\&. One of ('int32', 'float')\&. By default, it's 'int32'\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+
+# create 3x2 array of 32-bit integers
+myarray = array()
+myarray\&.create([3,2], 'int32')
+.fi
+.PP
+ 
+.PP
+Definition at line \fB73\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.fill ( self,  value)"
+
+.PP
+Fill all cells with a specified value This will set every index of the array to the same value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP Value to set all indices to
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+
+# this will fill a 3x2 array with 10s
+myarray = array([3,2], 'int32')
+myarray\&.fill(10)
+.fi
+.PP
+ 
+.PP
+Definition at line \fB238\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.filter ( self,  filter_func,  secondary_indices,  filter_type)"
+
+.PP
+Filter an array based on user-defined condition\&. 
+.PP
+\fBNote\fP
+.RS 4
+You will need to use ctypes in the filter function to convert values so the underlying C code knows what to do\&. 
+.PP
+Currently this filter doesn't support different filters on different columns simultaneously, but that's planned soon\&. 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilter_func\fP A user-defined python function that takes one parameter and returns a boolean\&. You will need to use ctypes to convert this parameter into your array type\&. See example below\&. 
+.br
+\fIsecondary_indices\fP These are the indices to restrict the filter to and are analogous to columns\&. E\&.g if you pass [1] it will only check the filter against column 1\&. If you pass an empty list [], it will check all columns\&. 
+.br
+\fIfilter_type\fP A string specifying 'ANY' or 'ALL'\&. This only applies to arrays 2D or above and if you are applying the filter to multiple columns\&. If 'ANY' is used, then the filter must pass (be true) for AT LEAST one of the columns; then that row will be returned\&. If 'ALL' is used, then ALL columns must satisfy the filter in order for that row to be returned\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+from ctypes import *
+from random import randint, seed
+
+# currently don't know a better way to make this more user-friendly
+# so for now, you will have to use a bit of ctypes magic
+def myfilter(x):
+    x = cast(x, POINTER(c_int32)) # cast parameter to a pointer of our array type (int32)
+    return x\&.contents\&.value > 20  # dereference and access the pointer value and check the condition
+
+arr = array()
+arr\&.create([5,2], 'int32')
+
+# set seed for reproducibility
+seed(5021)
+
+# fill array with random values
+for i in range(arr\&.shape[0]):
+    for j in range(arr\&.shape[1]):
+        arr[i,j] = randint(0,50)
+
+print("Full Array:")
+print(arr)
+
+# this will check if EITHER column 0 or 1 match the condition
+# we are passing an empty list in second parameter to check all columns\&.
+print("Filtered ANY:")
+filtered_any = arr\&.filter(myfilter, [], 'ANY')
+print(filtered_any)
+
+# this will check if BOTH column 0 and 1 match the condition
+print("Filtered ALL:")
+filtered_all = arr\&.filter(myfilter, [], 'ALL')
+print(filtered_all)
+.fi
+.PP
+.PP
+Output:
+.PP
+.PP
+.nf
+Full Array:
+37 39
+32 21
+49 44
+0 35
+12 18
+
+Filtered ANY:
+37 39
+32 21
+49 44
+0 35
+
+Filtered ALL:
+37 39
+32 21
+49 44
+.fi
+.PP
+ 
+.PP
+Definition at line \fB427\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.set ( self,  idx,  value)"
+
+.PP
+Set an element by index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP A list (or integer for 1D) specifying the index to set the value at\&. E\&.g [1, 2] will set a value at the second row, third column\&. 
+.br
+\fIvalue\fP Value to set at the specified index\&. Will have to match the data type that the array is set at (e\&.g, int32, float)\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+myarray\&.set(3) = 10       # 1D array
+myarray\&.set([1,3]) = 10   # 2D array
+myarray\&.set([2,1,1]) = 10 # 3D array
+.fi
+.PP
+ 
+.PP
+Definition at line \fB192\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.slice ( self,  slice_indices)"
+
+.PP
+Slice an array to extract subsets\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIslice_indices\fP A list of lists containing the indices to slice\&. First dimension corresponds to the array dimension and second dimension corresponds to the indices to pull from that dimension\&. See example below\&.
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+
+arr = array()
+arr\&.create([3,2], 'int32')
+arr\&.fill(10)
+
+print("Full Array:")
+print(arr)
+
+# reading the parameter explicitly, this is saying take index 0-2 from array dimension 0
+# and take index 0 from array dimension 1\&.
+# In other words, take all rows from column 0\&.
+sub = arr\&.slice([range(3), [0]])
+print("Sliced Array:")
+print(sub)
+.fi
+.PP
+.PP
+Output:
+.PP
+.PP
+.nf
+Full Array:
+10 10
+10 10
+10 10
+
+Sliced Array:
+10
+10
+10
+.fi
+.PP
+.PP
+Example 2:
+.PP
+.PP
+.nf
+from zumpy import array
+
+arr = array()
+arr\&.create([3,2,3], 'int32')
+arr\&.fill(10)
+# set the right-most column to 20
+for i in range(arr\&.shape[0]):
+    for j in range(arr\&.shape[1]):
+        arr[i,j,2] = 20
+
+print("Full Array:")
+print(arr)
+
+# take all indices from dimension 0,
+# all indices from dimension 1,
+# and index 2 from dimension 2\&.
+# In other words, this will extract the right-most column in a 3D array\&.
+sub = arr\&.slice([range(3), range(2), [2]])
+print("Sliced Array:")
+print(sub)
+.fi
+.PP
+.PP
+Output:
+.PP
+.PP
+.nf
+Full Array:
+10 10 20
+10 10 20
+
+10 10 20
+10 10 20
+
+10 10 20
+10 10 20
+
+
+Sliced Array:
+20
+20
+
+20
+20
+
+20
+20
+.fi
+.PP
+ 
+.PP
+Definition at line \fB332\fP of file \fBzumpy\&.py\fP\&.
+.SS "def zumpy\&.array\&.sum ( self)"
+
+.PP
+Sum all indices of an array\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A float value representing the sum of all the elements
+.RE
+.PP
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+from random import randint, seed
+
+arr = array()
+arr\&.create([5,2], 'int32')
+
+# set seed for reproducibility
+seed(5021)
+
+# fill array with random values
+for i in range(arr\&.shape[0]):
+    for j in range(arr\&.shape[1]):
+        arr[i,j] = randint(0,50)
+
+print("Full Array:")
+print(arr)
+
+print("Sum: ", arr\&.sum())
+.fi
+.PP
+.PP
+Output:
+.PP
+.PP
+.nf
+Full Array:
+37 39
+32 21
+49 44
+0 35
+12 18
+
+Sum:  287\&.0
+.fi
+.PP
+ 
+.PP
+Definition at line \fB499\fP of file \fBzumpy\&.py\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "zumpy\&.array\&.arr = None\fC [static]\fP"
+
+.PP
+Definition at line \fB56\fP of file \fBzumpy\&.py\fP\&.
+.SS "zumpy\&.array\&.dtype = None\fC [static]\fP"
+
+.PP
+Definition at line \fB57\fP of file \fBzumpy\&.py\fP\&.
+.SS "zumpy\&.array\&.shape = None\fC [static]\fP"
+
+.PP
+Definition at line \fB58\fP of file \fBzumpy\&.py\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Zumpy from the source code\&.

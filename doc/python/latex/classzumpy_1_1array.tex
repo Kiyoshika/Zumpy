@@ -1,0 +1,632 @@
+\hypertarget{classzumpy_1_1array}{}\doxysection{zumpy.\+array Class Reference}
+\label{classzumpy_1_1array}\index{zumpy.array@{zumpy.array}}
+
+
+Array Module A simple array class that handles arbitrary dimensions for integer and float types.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}} (self, \mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}}, \mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}}=\textquotesingle{}int32\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Create/\+Initialize an empty array with specified size/dimension and data type. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}}=None, \mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}}=\textquotesingle{}int32\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Constructor for array class. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Destructor to deallocate memory from the array. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}{\+\_\+\+\_\+str\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Override print() call to print the contents of an array. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}{\+\_\+\+\_\+repr\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Override print() call to print the contents of an array. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}{at}} (self, idx)
+\begin{DoxyCompactList}\small\item\em Access an element by index. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}{\+\_\+\+\_\+getitem\+\_\+\+\_\+}} (self, idx)
+\begin{DoxyCompactList}\small\item\em Access an element by index. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{set}} (self, idx, value)
+\begin{DoxyCompactList}\small\item\em Set an element by index. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}{\+\_\+\+\_\+setitem\+\_\+\+\_\+}} (self, idx, value)
+\begin{DoxyCompactList}\small\item\em Set an element by index. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}{fill}} (self, value)
+\begin{DoxyCompactList}\small\item\em Fill all cells with a specified value This will set every index of the array to the same value. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}{slice}} (self, slice\+\_\+indices)
+\begin{DoxyCompactList}\small\item\em Slice an array to extract subsets. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}{filter}} (self, filter\+\_\+func, secondary\+\_\+indices, filter\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Filter an array based on user-\/defined condition. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{sum}} (self)
+\begin{DoxyCompactList}\small\item\em Sum all indices of an array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}} = None
+\item 
+\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} = None
+\item 
+\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Array Module A simple array class that handles arbitrary dimensions for integer and float types. 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00049}{49}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}\label{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}} 
+\index{zumpy.array@{zumpy.array}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{shape = {\ttfamily None},  }\item[{}]{dtype = {\ttfamily \textquotesingle{}int32\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+Constructor for array class. 
+
+Calls create(self, shape, dtype) method. 
+\begin{DoxyParams}{Parameters}
+{\em shape} & A list specifying the shape/dimension, e.\+g \mbox{[}3, 2\mbox{]} for a 3x2 array. \\
+\hline
+{\em dtype} & A string specifying the data type of the array. One of (\textquotesingle{}int32\textquotesingle{}, \textquotesingle{}float\textquotesingle{}). By default, it\textquotesingle{}s \textquotesingle{}int32\textquotesingle{}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# create 3x2 array of 32-\/bit integers}}
+\DoxyCodeLine{myarray = array([3,2], \textcolor{stringliteral}{'int32'})}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00100}{100}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}\label{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}} 
+\index{zumpy.array@{zumpy.array}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Destructor to deallocate memory from the array. 
+
+This probably won\textquotesingle{}t ever need to be manually called by the user. This should handle the memory management behind the scenes interacting with the C code to avoid memory leaks. 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00106}{106}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}\label{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}} 
+\index{zumpy.array@{zumpy.array}!\_\_getitem\_\_@{\_\_getitem\_\_}}
+\index{\_\_getitem\_\_@{\_\_getitem\_\_}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{\_\_getitem\_\_()}{\_\_getitem\_\_()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+\_\+\+\_\+getitem\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{idx }\end{DoxyParamCaption})}
+
+
+
+Access an element by index. 
+
+This is a wrapper around the zumpy.\+array.\+at(self, idx) method to use convenient square bracket syntax. 
+\begin{DoxyParams}{Parameters}
+{\em idx} & A list specifying the index. E.\+g \mbox{[}1, 2\mbox{]} will access the element at the second row and third column (zero-\/indexed). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value at the specified index.
+\end{DoxyReturn}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myarray[3]     \textcolor{comment}{\# access the fourth element in a 1D array}}
+\DoxyCodeLine{myarray[1,2]   \textcolor{comment}{\# access the (1,2)th element in a 2D array}}
+\DoxyCodeLine{myarray[2,1,1] \textcolor{comment}{\# so on and so forth...I think you get the idea}}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00173}{173}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}\label{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}} 
+\index{zumpy.array@{zumpy.array}!\_\_repr\_\_@{\_\_repr\_\_}}
+\index{\_\_repr\_\_@{\_\_repr\_\_}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{\_\_repr\_\_()}{\_\_repr\_\_()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+\_\+\+\_\+repr\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Override print() call to print the contents of an array. 
+
+Calls custom print() function implemented in C to output contents in the console.
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{print(myarray)}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00131}{131}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}\label{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}} 
+\index{zumpy.array@{zumpy.array}!\_\_setitem\_\_@{\_\_setitem\_\_}}
+\index{\_\_setitem\_\_@{\_\_setitem\_\_}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{\_\_setitem\_\_()}{\_\_setitem\_\_()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+\_\+\+\_\+setitem\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{idx,  }\item[{}]{value }\end{DoxyParamCaption})}
+
+
+
+Set an element by index. 
+
+This is a wrapper around the zumpy.\+array.\+set(self, idx, value) method to use convenient square bracket syntax. 
+\begin{DoxyParams}{Parameters}
+{\em idx} & A list specifying the index. E.\+g \mbox{[}1, 2\mbox{]} will access the element at the second row and third column (zero-\/indexed).\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myarray[3] = 10     \textcolor{comment}{\# 1D array}}
+\DoxyCodeLine{myarray[1,2] = 10   \textcolor{comment}{\# 2D array}}
+\DoxyCodeLine{myarray[2,1,1] = 10 \textcolor{comment}{\# 3D array}}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00217}{217}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}\label{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}} 
+\index{zumpy.array@{zumpy.array}!\_\_str\_\_@{\_\_str\_\_}}
+\index{\_\_str\_\_@{\_\_str\_\_}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{\_\_str\_\_()}{\_\_str\_\_()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+\_\+\+\_\+str\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Override print() call to print the contents of an array. 
+
+Calls custom print() function implemented in C to output contents in the console.
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{print(myarray)}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00118}{118}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}\label{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}} 
+\index{zumpy.array@{zumpy.array}!at@{at}}
+\index{at@{at}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+at (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{idx }\end{DoxyParamCaption})}
+
+
+
+Access an element by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & A list (or integer for 1D) specifying the index. E.\+g \mbox{[}1, 2\mbox{]} will access the element at the second row and third column (zero-\/indexed). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value at the specified index.
+\end{DoxyReturn}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myarray.at(2) \textcolor{comment}{\# access third element in 1D array}}
+\DoxyCodeLine{\textcolor{comment}{\# note that higher dimensions require list syntax as below:}}
+\DoxyCodeLine{myarray.at([1,4]) \textcolor{comment}{\# access (1,4)th element in 2D array}}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00145}{145}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}\label{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}} 
+\index{zumpy.array@{zumpy.array}!create@{create}}
+\index{create@{create}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+create (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{shape,  }\item[{}]{dtype = {\ttfamily \textquotesingle{}int32\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+Create/\+Initialize an empty array with specified size/dimension and data type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape} & A list specifying the shape/dimension, e.\+g \mbox{[}3, 2\mbox{]} for a 3x2 array. \\
+\hline
+{\em dtype} & A string specifying the data type of the array. One of (\textquotesingle{}int32\textquotesingle{}, \textquotesingle{}float\textquotesingle{}). By default, it\textquotesingle{}s \textquotesingle{}int32\textquotesingle{}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# create 3x2 array of 32-\/bit integers}}
+\DoxyCodeLine{myarray = array()}
+\DoxyCodeLine{myarray.create([3,2], \textcolor{stringliteral}{'int32'})}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00073}{73}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}\label{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}} 
+\index{zumpy.array@{zumpy.array}!fill@{fill}}
+\index{fill@{fill}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{fill()}{fill()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+fill (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{value }\end{DoxyParamCaption})}
+
+
+
+Fill all cells with a specified value This will set every index of the array to the same value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set all indices to\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# this will fill a 3x2 array with 10s}}
+\DoxyCodeLine{myarray = array([3,2], \textcolor{stringliteral}{'int32'})}
+\DoxyCodeLine{myarray.fill(10)}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00238}{238}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}\label{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}} 
+\index{zumpy.array@{zumpy.array}!filter@{filter}}
+\index{filter@{filter}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+filter (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filter\+\_\+func,  }\item[{}]{secondary\+\_\+indices,  }\item[{}]{filter\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Filter an array based on user-\/defined condition. 
+
+\begin{DoxyNote}{Note}
+You will need to use ctypes in the filter function to convert values so the underlying C code knows what to do. 
+
+Currently this filter doesn\textquotesingle{}t support different filters on different columns simultaneously, but that\textquotesingle{}s planned soon. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+\_\+func} & A user-\/defined python function that takes one parameter and returns a boolean. You will need to use ctypes to convert this parameter into your array type. See example below. \\
+\hline
+{\em secondary\+\_\+indices} & These are the indices to restrict the filter to and are analogous to columns. E.\+g if you pass \mbox{[}1\mbox{]} it will only check the filter against column 1. If you pass an empty list \mbox{[}\mbox{]}, it will check all columns. \\
+\hline
+{\em filter\+\_\+type} & A string specifying \textquotesingle{}ANY\textquotesingle{} or \textquotesingle{}ALL\textquotesingle{}. This only applies to arrays 2D or above and if you are applying the filter to multiple columns. If \textquotesingle{}ANY\textquotesingle{} is used, then the filter must pass (be true) for AT LEAST one of the columns; then that row will be returned. If \textquotesingle{}ALL\textquotesingle{} is used, then ALL columns must satisfy the filter in order for that row to be returned.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{\textcolor{keyword}{from} ctypes \textcolor{keyword}{import} *}
+\DoxyCodeLine{\textcolor{keyword}{from} random \textcolor{keyword}{import} randint, seed}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# currently don't know a better way to make this more user-\/friendly}}
+\DoxyCodeLine{\textcolor{comment}{\# so for now, you will have to use a bit of ctypes magic}}
+\DoxyCodeLine{\textcolor{keyword}{def }myfilter(x):}
+\DoxyCodeLine{    x = cast(x, POINTER(c\_int32)) \textcolor{comment}{\# cast parameter to a pointer of our array type (int32)}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} x.contents.value > 20  \textcolor{comment}{\# dereference and access the pointer value and check the condition}}
+\DoxyCodeLine{}
+\DoxyCodeLine{arr = array()}
+\DoxyCodeLine{arr.create([5,2], \textcolor{stringliteral}{'int32'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# set seed for reproducibility}}
+\DoxyCodeLine{seed(5021)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# fill array with random values}}
+\DoxyCodeLine{\textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(arr.shape[0]):}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(arr.shape[1]):}
+\DoxyCodeLine{        arr[i,j] = randint(0,50)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Full Array:"{}})}
+\DoxyCodeLine{print(arr)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# this will check if EITHER column 0 or 1 match the condition}}
+\DoxyCodeLine{\textcolor{comment}{\# we are passing an empty list in second parameter to check all columns.}}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Filtered ANY:"{}})}
+\DoxyCodeLine{filtered\_any = arr.filter(myfilter, [], \textcolor{stringliteral}{'ANY'})}
+\DoxyCodeLine{print(filtered\_any)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# this will check if BOTH column 0 and 1 match the condition}}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Filtered ALL:"{}})}
+\DoxyCodeLine{filtered\_all = arr.filter(myfilter, [], \textcolor{stringliteral}{'ALL'})}
+\DoxyCodeLine{print(filtered\_all)}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Full Array:}
+\DoxyCodeLine{37 39}
+\DoxyCodeLine{32 21}
+\DoxyCodeLine{49 44}
+\DoxyCodeLine{0 35}
+\DoxyCodeLine{12 18}
+\DoxyCodeLine{}
+\DoxyCodeLine{Filtered ANY:}
+\DoxyCodeLine{37 39}
+\DoxyCodeLine{32 21}
+\DoxyCodeLine{49 44}
+\DoxyCodeLine{0 35}
+\DoxyCodeLine{}
+\DoxyCodeLine{Filtered ALL:}
+\DoxyCodeLine{37 39}
+\DoxyCodeLine{32 21}
+\DoxyCodeLine{49 44}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00427}{427}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}\label{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}} 
+\index{zumpy.array@{zumpy.array}!set@{set}}
+\index{set@{set}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+set (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{idx,  }\item[{}]{value }\end{DoxyParamCaption})}
+
+
+
+Set an element by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & A list (or integer for 1D) specifying the index to set the value at. E.\+g \mbox{[}1, 2\mbox{]} will set a value at the second row, third column. \\
+\hline
+{\em value} & Value to set at the specified index. Will have to match the data type that the array is set at (e.\+g, int32, float).\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myarray.set(3) = 10       \textcolor{comment}{\# 1D array}}
+\DoxyCodeLine{myarray.set([1,3]) = 10   \textcolor{comment}{\# 2D array}}
+\DoxyCodeLine{myarray.set([2,1,1]) = 10 \textcolor{comment}{\# 3D array}}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00192}{192}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}\label{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}} 
+\index{zumpy.array@{zumpy.array}!slice@{slice}}
+\index{slice@{slice}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{slice()}{slice()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+slice (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{slice\+\_\+indices }\end{DoxyParamCaption})}
+
+
+
+Slice an array to extract subsets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slice\+\_\+indices} & A list of lists containing the indices to slice. First dimension corresponds to the array dimension and second dimension corresponds to the indices to pull from that dimension. See example below.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{}
+\DoxyCodeLine{arr = array()}
+\DoxyCodeLine{arr.create([3,2], \textcolor{stringliteral}{'int32'})}
+\DoxyCodeLine{arr.fill(10)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Full Array:"{}})}
+\DoxyCodeLine{print(arr)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# reading the parameter explicitly, this is saying take index 0-\/2 from array dimension 0}}
+\DoxyCodeLine{\textcolor{comment}{\# and take index 0 from array dimension 1.}}
+\DoxyCodeLine{\textcolor{comment}{\# In other words, take all rows from column 0.}}
+\DoxyCodeLine{sub = arr.slice([range(3), [0]])}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Sliced Array:"{}})}
+\DoxyCodeLine{print(sub)}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Full Array:}
+\DoxyCodeLine{10 10}
+\DoxyCodeLine{10 10}
+\DoxyCodeLine{10 10}
+\DoxyCodeLine{}
+\DoxyCodeLine{Sliced Array:}
+\DoxyCodeLine{10}
+\DoxyCodeLine{10}
+\DoxyCodeLine{10}
+
+\end{DoxyCode}
+
+
+Example 2\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{}
+\DoxyCodeLine{arr = array()}
+\DoxyCodeLine{arr.create([3,2,3], \textcolor{stringliteral}{'int32'})}
+\DoxyCodeLine{arr.fill(10)}
+\DoxyCodeLine{\textcolor{comment}{\# set the right-\/most column to 20}}
+\DoxyCodeLine{\textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(arr.shape[0]):}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(arr.shape[1]):}
+\DoxyCodeLine{        arr[i,j,2] = 20}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Full Array:"{}})}
+\DoxyCodeLine{print(arr)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# take all indices from dimension 0,}}
+\DoxyCodeLine{\textcolor{comment}{\# all indices from dimension 1,}}
+\DoxyCodeLine{\textcolor{comment}{\# and index 2 from dimension 2.}}
+\DoxyCodeLine{\textcolor{comment}{\# In other words, this will extract the right-\/most column in a 3D array.}}
+\DoxyCodeLine{sub = arr.slice([range(3), range(2), [2]])}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Sliced Array:"{}})}
+\DoxyCodeLine{print(sub)}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Full Array:}
+\DoxyCodeLine{10 10 20}
+\DoxyCodeLine{10 10 20}
+\DoxyCodeLine{}
+\DoxyCodeLine{10 10 20}
+\DoxyCodeLine{10 10 20}
+\DoxyCodeLine{}
+\DoxyCodeLine{10 10 20}
+\DoxyCodeLine{10 10 20}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{Sliced Array:}
+\DoxyCodeLine{20}
+\DoxyCodeLine{20}
+\DoxyCodeLine{}
+\DoxyCodeLine{20}
+\DoxyCodeLine{20}
+\DoxyCodeLine{}
+\DoxyCodeLine{20}
+\DoxyCodeLine{20}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00332}{332}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}\label{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}} 
+\index{zumpy.array@{zumpy.array}!sum@{sum}}
+\index{sum@{sum}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+sum (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Sum all indices of an array. 
+
+\begin{DoxyReturn}{Returns}
+A float value representing the sum of all the elements
+\end{DoxyReturn}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{\textcolor{keyword}{from} random \textcolor{keyword}{import} randint, seed}
+\DoxyCodeLine{}
+\DoxyCodeLine{arr = array()}
+\DoxyCodeLine{arr.create([5,2], \textcolor{stringliteral}{'int32'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# set seed for reproducibility}}
+\DoxyCodeLine{seed(5021)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# fill array with random values}}
+\DoxyCodeLine{\textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(arr.shape[0]):}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(arr.shape[1]):}
+\DoxyCodeLine{        arr[i,j] = randint(0,50)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Full Array:"{}})}
+\DoxyCodeLine{print(arr)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Sum: "{}}, arr.sum())}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Full Array:}
+\DoxyCodeLine{37 39}
+\DoxyCodeLine{32 21}
+\DoxyCodeLine{49 44}
+\DoxyCodeLine{0 35}
+\DoxyCodeLine{12 18}
+\DoxyCodeLine{}
+\DoxyCodeLine{Sum:  287.0}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00499}{499}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}\label{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}} 
+\index{zumpy.array@{zumpy.array}!arr@{arr}}
+\index{arr@{arr}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{arr}{arr}}
+{\footnotesize\ttfamily zumpy.\+array.\+arr = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00056}{56}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}\label{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}} 
+\index{zumpy.array@{zumpy.array}!dtype@{dtype}}
+\index{dtype@{dtype}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{dtype}{dtype}}
+{\footnotesize\ttfamily zumpy.\+array.\+dtype = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00057}{57}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+\mbox{\Hypertarget{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}\label{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}} 
+\index{zumpy.array@{zumpy.array}!shape@{shape}}
+\index{shape@{shape}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily zumpy.\+array.\+shape = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{zumpy_8py_source_l00058}{58}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/python/\mbox{\hyperlink{zumpy_8py}{zumpy.\+py}}\end{DoxyCompactItemize}
