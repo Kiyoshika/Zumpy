@@ -8,9 +8,9 @@ Array Module A simple array class that handles arbitrary dimensions for integer 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}} (self, \mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}}, \mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}}=\textquotesingle{}int32\textquotesingle{})
+def \mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}} (self, shape, dtype=\textquotesingle{}int32\textquotesingle{})
 \begin{DoxyCompactList}\small\item\em Create/\+Initialize an empty array with specified size/dimension and data type. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}}=None, \mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}}=\textquotesingle{}int32\textquotesingle{})
+def \mbox{\hyperlink{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, shape=None, dtype=\textquotesingle{}int32\textquotesingle{})
 \begin{DoxyCompactList}\small\item\em Constructor for array class. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
 \begin{DoxyCompactList}\small\item\em Destructor to deallocate memory from the array. \end{DoxyCompactList}\item 
@@ -33,24 +33,25 @@ def \mbox{\hyperlink{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}{slic
 def \mbox{\hyperlink{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}{filter}} (self, filter\+\_\+func, secondary\+\_\+indices, filter\+\_\+type)
 \begin{DoxyCompactList}\small\item\em Filter an array based on user-\/defined condition. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{sum}} (self)
-\begin{DoxyCompactList}\small\item\em Sum all indices of an array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sum all indices of an array. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classzumpy_1_1array_aa2e2048f07cb9ea15612633f4b924e01}{to\+\_\+array}} (self, list\+\_\+arr, dtype=\textquotesingle{}int32\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Convert a Python list (of lists) to an array. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}} = None
+\mbox{\Hypertarget{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}\label{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}} 
+{\bfseries arr} = None
 \item 
-\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} = None
+\mbox{\Hypertarget{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}\label{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}} 
+{\bfseries dtype} = None
 \item 
-\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}} = None
+\mbox{\Hypertarget{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}\label{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}} 
+{\bfseries shape} = None
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Array Module A simple array class that handles arbitrary dimensions for integer and float types. 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00049}{49}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}\label{classzumpy_1_1array_adbebcc1aa4ab815fe751794644c8a6dc}} 
@@ -80,11 +81,7 @@ Example\+:
 \DoxyCodeLine{myarray = array([3,2], \textcolor{stringliteral}{'int32'})}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00100}{100}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}\label{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}\label{classzumpy_1_1array_ae78e08f3b69789fe1a8707320f0ea88b}} 
 \index{zumpy.array@{zumpy.array}!\_\_del\_\_@{\_\_del\_\_}}
 \index{\_\_del\_\_@{\_\_del\_\_}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
@@ -95,10 +92,6 @@ Definition at line \mbox{\hyperlink{zumpy_8py_source_l00100}{100}} of file \mbox
 Destructor to deallocate memory from the array. 
 
 This probably won\textquotesingle{}t ever need to be manually called by the user. This should handle the memory management behind the scenes interacting with the C code to avoid memory leaks. 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00106}{106}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}\label{classzumpy_1_1array_ad4814f336c60d790f7207a56ddef4d26}} 
@@ -128,11 +121,7 @@ Example\+:
 \DoxyCodeLine{myarray[2,1,1] \textcolor{comment}{\# so on and so forth...I think you get the idea}}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00173}{173}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}\label{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}\label{classzumpy_1_1array_ae46c039a60f0186ea5252077daca04cd}} 
 \index{zumpy.array@{zumpy.array}!\_\_repr\_\_@{\_\_repr\_\_}}
 \index{\_\_repr\_\_@{\_\_repr\_\_}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{\_\_repr\_\_()}{\_\_repr\_\_()}}
@@ -151,11 +140,7 @@ Example\+:
 \DoxyCodeLine{print(myarray)}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00131}{131}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}\label{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}\label{classzumpy_1_1array_a7baa203a5cfc156c6e8ba31f4391aa71}} 
 \index{zumpy.array@{zumpy.array}!\_\_setitem\_\_@{\_\_setitem\_\_}}
 \index{\_\_setitem\_\_@{\_\_setitem\_\_}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{\_\_setitem\_\_()}{\_\_setitem\_\_()}}
@@ -179,11 +164,7 @@ Example\+:
 \DoxyCodeLine{myarray[2,1,1] = 10 \textcolor{comment}{\# 3D array}}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00217}{217}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}\label{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}\label{classzumpy_1_1array_ad632d721d67924cea3552fc66d689fc3}} 
 \index{zumpy.array@{zumpy.array}!\_\_str\_\_@{\_\_str\_\_}}
 \index{\_\_str\_\_@{\_\_str\_\_}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{\_\_str\_\_()}{\_\_str\_\_()}}
@@ -202,11 +183,7 @@ Example\+:
 \DoxyCodeLine{print(myarray)}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00118}{118}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}\label{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}\label{classzumpy_1_1array_a553ea0c0e9dc241e6d8487c2a13f7ff7}} 
 \index{zumpy.array@{zumpy.array}!at@{at}}
 \index{at@{at}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{at()}{at()}}
@@ -233,11 +210,7 @@ Example\+:
 \DoxyCodeLine{myarray.at([1,4]) \textcolor{comment}{\# access (1,4)th element in 2D array}}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00145}{145}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}\label{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}\label{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}} 
 \index{zumpy.array@{zumpy.array}!create@{create}}
 \index{create@{create}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{create()}{create()}}
@@ -265,11 +238,7 @@ Example\+:
 \DoxyCodeLine{myarray.create([3,2], \textcolor{stringliteral}{'int32'})}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00073}{73}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}\label{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}\label{classzumpy_1_1array_a3f4ae62feb6ff6825c7dad2e6fffc15f}} 
 \index{zumpy.array@{zumpy.array}!fill@{fill}}
 \index{fill@{fill}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{fill()}{fill()}}
@@ -295,11 +264,7 @@ Example\+:
 \DoxyCodeLine{myarray.fill(10)}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00238}{238}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}\label{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}\label{classzumpy_1_1array_a1826da0ec98ad0ceb7acbe81a6334a88}} 
 \index{zumpy.array@{zumpy.array}!filter@{filter}}
 \index{filter@{filter}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{filter()}{filter()}}
@@ -388,11 +353,7 @@ Output\+:
 \DoxyCodeLine{49 44}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00427}{427}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}\label{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}\label{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}} 
 \index{zumpy.array@{zumpy.array}!set@{set}}
 \index{set@{set}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{set()}{set()}}
@@ -418,11 +379,7 @@ Example\+:
 \DoxyCodeLine{myarray.set([2,1,1]) = 10 \textcolor{comment}{\# 3D array}}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00192}{192}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}\label{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}\label{classzumpy_1_1array_a9ada4e84da6fe2e94411cf1ff1dde739}} 
 \index{zumpy.array@{zumpy.array}!slice@{slice}}
 \index{slice@{slice}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{slice()}{slice()}}
@@ -531,11 +488,7 @@ Output\+:
 \DoxyCodeLine{20}
 
 \end{DoxyCode}
- 
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00332}{332}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}\label{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}} 
+ \mbox{\Hypertarget{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}\label{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}} 
 \index{zumpy.array@{zumpy.array}!sum@{sum}}
 \index{sum@{sum}!zumpy.array@{zumpy.array}}
 \doxysubsubsection{\texorpdfstring{sum()}{sum()}}
@@ -588,45 +541,58 @@ Output\+:
 \DoxyCodeLine{Sum:  287.0}
 
 \end{DoxyCode}
+ \mbox{\Hypertarget{classzumpy_1_1array_aa2e2048f07cb9ea15612633f4b924e01}\label{classzumpy_1_1array_aa2e2048f07cb9ea15612633f4b924e01}} 
+\index{zumpy.array@{zumpy.array}!to\_array@{to\_array}}
+\index{to\_array@{to\_array}!zumpy.array@{zumpy.array}}
+\doxysubsubsection{\texorpdfstring{to\_array()}{to\_array()}}
+{\footnotesize\ttfamily def zumpy.\+array.\+to\+\_\+array (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{list\+\_\+arr,  }\item[{}]{dtype = {\ttfamily \textquotesingle{}int32\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+Convert a Python list (of lists) to an array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+arr} & The Python list (of lists) to convert into an array. This assumes the length of each list within the same dimension is the same (i.\+e, no jagged arrays) \\
+\hline
+{\em dtype} & The data type of the array. One of (\textquotesingle{}int32\textquotesingle{}, \textquotesingle{}float\textquotesingle{}). By default is \textquotesingle{}int32\textquotesingle{}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# convert a 3x4 python list into a zumpy array}}
+\DoxyCodeLine{x = [}
+\DoxyCodeLine{        [1,2,3,4],}
+\DoxyCodeLine{        [5,6,7,8],}
+\DoxyCodeLine{        [9,10,11,12]}
+\DoxyCodeLine{]}
+\DoxyCodeLine{arr = array()}
+\DoxyCodeLine{arr.to\_array(x) \textcolor{comment}{\# by default the dtype is 'int32' so no need to specify here}}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Shape: "{}}, arr.shape)}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Array:"{}})}
+\DoxyCodeLine{print(arr)}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Shape:  [3, 4]}
+\DoxyCodeLine{Array:}
+\DoxyCodeLine{1 2 3 4}
+\DoxyCodeLine{5 6 7 8}
+\DoxyCodeLine{9 10 11 12}
+
+\end{DoxyCode}
  
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00499}{499}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-
-
-\doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}\label{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}} 
-\index{zumpy.array@{zumpy.array}!arr@{arr}}
-\index{arr@{arr}!zumpy.array@{zumpy.array}}
-\doxysubsubsection{\texorpdfstring{arr}{arr}}
-{\footnotesize\ttfamily zumpy.\+array.\+arr = None\hspace{0.3cm}{\ttfamily [static]}}
-
-
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00056}{56}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}\label{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}} 
-\index{zumpy.array@{zumpy.array}!dtype@{dtype}}
-\index{dtype@{dtype}!zumpy.array@{zumpy.array}}
-\doxysubsubsection{\texorpdfstring{dtype}{dtype}}
-{\footnotesize\ttfamily zumpy.\+array.\+dtype = None\hspace{0.3cm}{\ttfamily [static]}}
-
-
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00057}{57}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-\mbox{\Hypertarget{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}\label{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}} 
-\index{zumpy.array@{zumpy.array}!shape@{shape}}
-\index{shape@{shape}!zumpy.array@{zumpy.array}}
-\doxysubsubsection{\texorpdfstring{shape}{shape}}
-{\footnotesize\ttfamily zumpy.\+array.\+shape = None\hspace{0.3cm}{\ttfamily [static]}}
-
-
-
-Definition at line \mbox{\hyperlink{zumpy_8py_source_l00058}{58}} of file \mbox{\hyperlink{zumpy_8py_source}{zumpy.\+py}}.
-
-
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/python/\mbox{\hyperlink{zumpy_8py}{zumpy.\+py}}\end{DoxyCompactItemize}
+src/python/zumpy.\+py\end{DoxyCompactItemize}

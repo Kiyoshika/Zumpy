@@ -1,0 +1,73 @@
+An array module inspired by numpy written in C using Python\textquotesingle{}s ctypes purely for learning.
+
+The name \char`\"{}\+Zumpy\char`\"{} is derived from the popular library \char`\"{}numpy\char`\"{} but using the first letter of my name, Z.\hypertarget{md_README_autotoc_md1}{}\doxysection{How to Use}\label{md_README_autotoc_md1}
+Firstly, I wouldn\textquotesingle{}t use this right now since it\textquotesingle{}s experimental and also barely functional.
+
+However, if you DO want to use it, you can export just the python folder within src and import it just like the example.\+py. Just be sure to keep the ext folder in the same directory since it\textquotesingle{}s a direct dependency.\hypertarget{md_README_autotoc_md2}{}\doxysection{The Internals...}\label{md_README_autotoc_md2}
+Even though I use the verbage \char`\"{}2\+D\char`\"{} and \char`\"{}3\+D\char`\"{} array, internally every array is stored as a one-\/dimensional void pointer. The multiple dimensions are just mathematical offset calculations to mimick multi-\/dimensional arrays. Check out the C code if you\textquotesingle{}re interested in how this is done.\hypertarget{md_README_autotoc_md3}{}\doxysection{Documenation}\label{md_README_autotoc_md3}
+I am using Doxygen to generate La\+Tex/\+Man/\+PDF documentation. For the PDF, go to doc/latex directory and open refman.\+pdf. There are some known formatting errors in the examples and those will be fixed later. Prioritizing the library functionality over formatting issues at the moment.\hypertarget{md_README_autotoc_md4}{}\doxysection{Example}\label{md_README_autotoc_md4}
+This is an example highlighting a couple of the current main features. Creating an array, setting values and filtering. There is also array slicing but it\textquotesingle{}s not shown in this example (yet). 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from} zumpy \textcolor{keyword}{import} array}
+\DoxyCodeLine{\textcolor{keyword}{from} ctypes \textcolor{keyword}{import} *}
+\DoxyCodeLine{\textcolor{keyword}{from} random \textcolor{keyword}{import} randint, seed}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# set seed for reproducibility}}
+\DoxyCodeLine{seed(400)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# the underlying C code uses void* pointers, so we have to cast}}
+\DoxyCodeLine{\textcolor{comment}{\# to an appropriate type for Python to make sense of it}}
+\DoxyCodeLine{\textcolor{keyword}{def }myfilter(x):}
+\DoxyCodeLine{    x = cast(x, POINTER(c\_int32))}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} x.contents.value > 10}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# create an empty 3x2 array}}
+\DoxyCodeLine{arr = array([3,2], \textcolor{stringliteral}{'int32'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# fill array with random values}}
+\DoxyCodeLine{\textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(arr.shape[0]):}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(arr.shape[1]):}
+\DoxyCodeLine{        arr[i,j] = randint(0, 50) \textcolor{comment}{\# set index (i, j) to a random int}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# check column index 1 for values greater than 10.}}
+\DoxyCodeLine{\textcolor{comment}{\# since we are filtering on one column, ANY/ALL doesn't}}
+\DoxyCodeLine{\textcolor{comment}{\# make a difference here}}
+\DoxyCodeLine{filter\_one\_column = arr.filter(myfilter, [1], \textcolor{stringliteral}{'ANY'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\# passing an empty list will default to check all column indices.}}
+\DoxyCodeLine{\textcolor{comment}{\# we also use the "{}ALL"{} setting which means that ALL columns}}
+\DoxyCodeLine{\textcolor{comment}{\# must meet the condition in order for the row to be returned.}}
+\DoxyCodeLine{\textcolor{comment}{\# if ANY is used, then ANY column (at least one column) must}}
+\DoxyCodeLine{\textcolor{comment}{\# match the condition to return a row.}}
+\DoxyCodeLine{filter\_two\_column = arr.filter(myfilter, [], \textcolor{stringliteral}{'ALL'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Original Array:"{}})}
+\DoxyCodeLine{print(arr)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Filtered Column 1:"{}})}
+\DoxyCodeLine{print(filter\_one\_column)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(\textcolor{stringliteral}{"{}Filtered Both Columns:"{}})}
+\DoxyCodeLine{print(filter\_two\_column)}
+
+\end{DoxyCode}
+
+
+Output\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Original Array:}
+\DoxyCodeLine{19 35 }
+\DoxyCodeLine{16 50 }
+\DoxyCodeLine{5 36 }
+\DoxyCodeLine{}
+\DoxyCodeLine{Filtered Column 1:}
+\DoxyCodeLine{19 35 }
+\DoxyCodeLine{16 50 }
+\DoxyCodeLine{5 36 }
+\DoxyCodeLine{}
+\DoxyCodeLine{Filtered Both Columns:}
+\DoxyCodeLine{19 35 }
+\DoxyCodeLine{16 50 }
+
+\end{DoxyCode}
+ As you can see in the example, the first filter returned the entire array again because we are only checking index 1 \texorpdfstring{$>$}{>} 10 (the \char`\"{}second\char`\"{} column) in which case all results were true. However the second filter only returned the first two rows since the last row contained a value \texorpdfstring{$<$}{<} 10 and we set the setting to \char`\"{}\+ALL\char`\"{}. If we used \char`\"{}\+ANY\char`\"{} then it would have returned the entire array as 36 \texorpdfstring{$>$}{>} 10. 

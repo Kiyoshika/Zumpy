@@ -221,5 +221,64 @@
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00461}00461     }
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00499}\mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{00499}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{sum}}(self):}
 \DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00500}00500         \textcolor{keywordflow}{return} \_libZumpy.arr\_sum(byref(self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}}))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00501}00501 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00502}00502     \textcolor{keyword}{def }\_\_get\_list\_shape(self, \_list, shape = []):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00503}00503         \textcolor{keywordflow}{if} (isinstance(\_list, list)):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00504}00504             shape.append(len(\_list))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00505}00505 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00506}00506         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00507}00507             \textcolor{keywordflow}{if} (isinstance(\_list[0], list)):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00508}00508                 \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classzumpy_1_1array_af3e329e59425acf4c2fd8ccc197c8609}{\_\_get\_list\_shape}}(\_list[0])}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00509}00509             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00510}00510                 \textcolor{keywordflow}{return} shape}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00511}00511         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00512}00512             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00513}00513 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00514}00514     \textcolor{comment}{\# a replica of the C implementation to get all index}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00515}00515     \textcolor{comment}{\# combinations from a particular array shape.}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00516}00516     \textcolor{comment}{\# this is then used to set the values from the python list}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00517}00517     \textcolor{comment}{\# to the appropriate indices in the array.}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00518}00518     \textcolor{keyword}{def }\_\_get\_index\_combinations(self, shape):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00519}00519         current\_idx = [0] * len(shape)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00520}00520         idx\_list = []}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00521}00521 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00522}00522         \textcolor{keywordflow}{while} \textcolor{keyword}{True}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00523}00523             idx\_list.append(current\_idx.copy())}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00524}00524             current\_idx[len(current\_idx)-\/1] += 1}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00525}00525 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00526}00526             \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} reversed(range(len(shape))):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00527}00527                 \textcolor{keywordflow}{if} current\_idx[i] >= shape[i]:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00528}00528                     current\_idx[i] = 0}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00529}00529                     \textcolor{keywordflow}{if} i == 0:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00530}00530                         \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00531}00531                     current\_idx[i-\/1] += 1}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00532}00532 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00533}00533             \textcolor{keywordflow}{if} \mbox{\hyperlink{classzumpy_1_1array_acd585c976dbc21e9e1782fbff6684bc1}{sum}}(current\_idx) == 0:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00534}00534                 \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00535}00535 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00536}00536         \textcolor{keywordflow}{return} idx\_list}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00537}00537 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00538}00538     \textcolor{comment}{\# this mimics the functionality of "{}calculate offset"{}}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00539}00539     \textcolor{comment}{\# from C implementation. It will allow you to access an element}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00540}00540     \textcolor{comment}{\# of a multidimensional list by passing the (reversed) indices}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00541}00541     \textcolor{comment}{\# as a list such as [2,1,1]}}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00542}00542     \textcolor{keyword}{def }\_\_elem\_at(self, \_list, idx):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00543}00543         val = idx.pop()}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00544}00544         \textcolor{keywordflow}{if} isinstance(\_list[val], list):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00545}00545             \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classzumpy_1_1array_a792d23d7f912b6df8a391014a036c1d4}{\_\_elem\_at}}(\_list[val], idx)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00546}00546         \textcolor{keywordflow}{return} \_list[val]}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00547}00547 }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00548}00548     }
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00580}\mbox{\hyperlink{classzumpy_1_1array_aa2e2048f07cb9ea15612633f4b924e01}{00580}}     \textcolor{keyword}{def }\mbox{\hyperlink{classzumpy_1_1array_aa2e2048f07cb9ea15612633f4b924e01}{to\_array}}(self, list\_arr, dtype = 'int32'):}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00581}00581         list\_arr\_shape = self.\mbox{\hyperlink{classzumpy_1_1array_af3e329e59425acf4c2fd8ccc197c8609}{\_\_get\_list\_shape}}(list\_arr)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00582}00582         \textcolor{keywordflow}{if} list\_arr\_shape != \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00583}00583             self.\mbox{\hyperlink{classzumpy_1_1array_afdaf3dde3cb78b65b6e7f59528abc20d}{shape}} = list\_arr\_shape}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00584}00584             self.\mbox{\hyperlink{classzumpy_1_1array_a7feba772b5e2611621ea9fea5a7ef59f}{dtype}} = dtype}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00585}00585             self.\mbox{\hyperlink{classzumpy_1_1array_a222b68787d02af14efac3f0297486c5d}{arr}} = \mbox{\hyperlink{classzumpy_1_1array__wrapper}{array\_wrapper}}()}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00586}00586             self.\mbox{\hyperlink{classzumpy_1_1array_a31f441747441e1746a66e1be537fc760}{create}}(list\_arr\_shape, dtype)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00587}00587             idx\_list = self.\mbox{\hyperlink{classzumpy_1_1array_aeca892392678afa78b4b446b65528d2a}{\_\_get\_index\_combinations}}(list\_arr\_shape)}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00588}00588             \textcolor{keywordflow}{for} idx \textcolor{keywordflow}{in} idx\_list:}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00589}00589                 r\_idx = list(reversed(idx))}
+\DoxyCodeLine{\Hypertarget{zumpy_8py_source_l00590}00590                 self.\mbox{\hyperlink{classzumpy_1_1array_a33fbbdf3d32fee45a109ee0005c53e29}{set}}(idx, self.\mbox{\hyperlink{classzumpy_1_1array_a792d23d7f912b6df8a391014a036c1d4}{\_\_elem\_at}}(list\_arr, r\_idx))}
 
 \end{DoxyCode}
