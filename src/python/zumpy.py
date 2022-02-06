@@ -498,3 +498,93 @@ class array():
     # @endcode
     def sum(self):
         return _libZumpy.arr_sum(byref(self.arr))
+
+    def __get_list_shape(self, _list, shape = []):
+        if (isinstance(_list, list)):
+            shape.append(len(_list))
+
+        try:
+            if (isinstance(_list[0], list)):
+                return self.__get_list_shape(_list[0])
+            else:
+                return shape
+        except:
+            pass
+
+    # a replica of the C implementation to get all index
+    # combinations from a particular array shape.
+    # this is then used to set the values from the python list
+    # to the appropriate indices in the array.
+    def __get_index_combinations(self, shape):
+        current_idx = [0] * len(shape)
+        idx_list = []
+
+        while True:
+            idx_list.append(current_idx.copy())
+            current_idx[len(current_idx)-1] += 1
+
+            for i in reversed(range(len(shape))):
+                if current_idx[i] >= shape[i]:
+                    current_idx[i] = 0
+                    if i == 0:
+                        break
+                    current_idx[i-1] += 1
+
+            if sum(current_idx) == 0:
+                break
+
+        return idx_list
+
+    # this mimics the functionality of "calculate offset"
+    # from C implementation. It will allow you to access an element
+    # of a multidimensional list by passing the (reversed) indices
+    # as a list such as [2,1,1]
+    def __elem_at(self, _list, idx):
+        val = idx.pop()
+        if isinstance(_list[val], list):
+            return self.__elem_at(_list[val], idx)
+        return _list[val]
+
+    ## Convert a Python list (of lists) to an array
+    # @param list_arr The Python list (of lists) to convert into an array. This assumes the length of each list within the same dimension is the same (i.e, no jagged arrays)
+    # @param dtype The data type of the array. One of ('int32', 'float'). By default is 'int32'.
+    #
+    # Example:
+    #
+    # @code
+    # from zumpy import array
+    #
+    # # convert a 3x4 python list into a zumpy array
+    # x = [
+    #         [1,2,3,4],
+    #         [5,6,7,8],
+    #         [9,10,11,12]
+    # ]
+    # arr = array()
+    # arr.to_array(x) # by default the dtype is 'int32' so no need to specify here
+    #
+    # print("Shape: ", arr.shape)
+    # print("Array:")
+    # print(arr)
+    # @endcode
+    #
+    # Output:
+    # Shape:  [3, 4]
+    # Array:
+    # 1 2 3 4
+    # 5 6 7 8
+    # 9 10 11 12
+    # @code
+    #
+    # @endcode
+    def to_array(self, list_arr, dtype = 'int32'):
+        list_arr_shape = self.__get_list_shape(list_arr)
+        if list_arr_shape != None:
+            self.shape = list_arr_shape
+            self.dtype = dtype
+            self.arr = array_wrapper()
+            self.create(list_arr_shape, dtype)
+            idx_list = self.__get_index_combinations(list_arr_shape)
+            for idx in idx_list:
+                r_idx = list(reversed(idx))
+                self.set(idx, self.__elem_at(list_arr, r_idx))
