@@ -11,11 +11,11 @@ zumpy.array \- Array Module A simple array class that handles arbitrary dimensio
 
 .in +1c
 .ti -1c
-.RI "def \fBcreate\fP (self, \fBshape\fP, \fBdtype\fP='int32')"
+.RI "def \fBcreate\fP (self, shape, dtype='int32')"
 .br
 .RI "Create/Initialize an empty array with specified size/dimension and data type\&. "
 .ti -1c
-.RI "def \fB__init__\fP (self, \fBshape\fP=None, \fBdtype\fP='int32')"
+.RI "def \fB__init__\fP (self, shape=None, dtype='int32')"
 .br
 .RI "Constructor for array class\&. "
 .ti -1c
@@ -62,6 +62,10 @@ zumpy.array \- Array Module A simple array class that handles arbitrary dimensio
 .RI "def \fBsum\fP (self)"
 .br
 .RI "Sum all indices of an array\&. "
+.ti -1c
+.RI "def \fBto_array\fP (self, list_arr, dtype='int32')"
+.br
+.RI "Convert a Python list (of lists) to an array\&. "
 .in -1c
 .SS "Static Public Attributes"
 
@@ -79,8 +83,6 @@ zumpy.array \- Array Module A simple array class that handles arbitrary dimensio
 .SH "Detailed Description"
 .PP 
 Array Module A simple array class that handles arbitrary dimensions for integer and float types\&. 
-.PP
-Definition at line \fB49\fP of file \fBzumpy\&.py\fP\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "def zumpy\&.array\&.__init__ ( self,  shape = \fCNone\fP,  dtype = \fC'int32'\fP)"
@@ -106,14 +108,10 @@ myarray = array([3,2], 'int32')
 .fi
 .PP
  
-.PP
-Definition at line \fB100\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.__del__ ( self)"
 
 .PP
 Destructor to deallocate memory from the array\&. This probably won't ever need to be manually called by the user\&. This should handle the memory management behind the scenes interacting with the C code to avoid memory leaks\&. 
-.PP
-Definition at line \fB106\fP of file \fBzumpy\&.py\fP\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "def zumpy\&.array\&.__getitem__ ( self,  idx)"
@@ -141,8 +139,6 @@ myarray[2,1,1] # so on and so forth\&.\&.\&.I think you get the idea
 .fi
 .PP
  
-.PP
-Definition at line \fB173\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.__repr__ ( self)"
 
 .PP
@@ -156,8 +152,6 @@ print(myarray)
 .fi
 .PP
  
-.PP
-Definition at line \fB131\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.__setitem__ ( self,  idx,  value)"
 
 .PP
@@ -178,8 +172,6 @@ myarray[2,1,1] = 10 # 3D array
 .fi
 .PP
  
-.PP
-Definition at line \fB217\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.__str__ ( self)"
 
 .PP
@@ -193,8 +185,6 @@ print(myarray)
 .fi
 .PP
  
-.PP
-Definition at line \fB118\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.at ( self,  idx)"
 
 .PP
@@ -220,8 +210,6 @@ myarray\&.at([1,4]) # access (1,4)th element in 2D array
 .fi
 .PP
  
-.PP
-Definition at line \fB145\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.create ( self,  shape,  dtype = \fC'int32'\fP)"
 
 .PP
@@ -246,8 +234,6 @@ myarray\&.create([3,2], 'int32')
 .fi
 .PP
  
-.PP
-Definition at line \fB73\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.fill ( self,  value)"
 
 .PP
@@ -270,8 +256,6 @@ myarray\&.fill(10)
 .fi
 .PP
  
-.PP
-Definition at line \fB238\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.filter ( self,  filter_func,  secondary_indices,  filter_type)"
 
 .PP
@@ -358,8 +342,6 @@ Filtered ALL:
 .fi
 .PP
  
-.PP
-Definition at line \fB427\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.set ( self,  idx,  value)"
 
 .PP
@@ -382,8 +364,6 @@ myarray\&.set([2,1,1]) = 10 # 3D array
 .fi
 .PP
  
-.PP
-Definition at line \fB192\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.slice ( self,  slice_indices)"
 
 .PP
@@ -486,8 +466,6 @@ Sliced Array:
 .fi
 .PP
  
-.PP
-Definition at line \fB332\fP of file \fBzumpy\&.py\fP\&.
 .SS "def zumpy\&.array\&.sum ( self)"
 
 .PP
@@ -538,22 +516,51 @@ Sum:  287\&.0
 .fi
 .PP
  
-.PP
-Definition at line \fB499\fP of file \fBzumpy\&.py\fP\&.
-.SH "Member Data Documentation"
-.PP 
-.SS "zumpy\&.array\&.arr = None\fC [static]\fP"
+.SS "def zumpy\&.array\&.to_array ( self,  list_arr,  dtype = \fC'int32'\fP)"
 
 .PP
-Definition at line \fB56\fP of file \fBzumpy\&.py\fP\&.
-.SS "zumpy\&.array\&.dtype = None\fC [static]\fP"
-
+Convert a Python list (of lists) to an array\&. 
 .PP
-Definition at line \fB57\fP of file \fBzumpy\&.py\fP\&.
-.SS "zumpy\&.array\&.shape = None\fC [static]\fP"
-
+\fBParameters\fP
+.RS 4
+\fIlist_arr\fP The Python list (of lists) to convert into an array\&. This assumes the length of each list within the same dimension is the same (i\&.e, no jagged arrays) 
+.br
+\fIdtype\fP The data type of the array\&. One of ('int32', 'float')\&. By default is 'int32'\&.
+.RE
 .PP
-Definition at line \fB58\fP of file \fBzumpy\&.py\fP\&.
+Example:
+.PP
+.PP
+.nf
+from zumpy import array
+
+# convert a 3x4 python list into a zumpy array
+x = [
+        [1,2,3,4],
+        [5,6,7,8],
+        [9,10,11,12]
+]
+arr = array()
+arr\&.to_array(x) # by default the dtype is 'int32' so no need to specify here
+
+print("Shape: ", arr\&.shape)
+print("Array:")
+print(arr)
+.fi
+.PP
+.PP
+Output:
+.PP
+.PP
+.nf
+Shape:  [3, 4]
+Array:
+1 2 3 4
+5 6 7 8
+9 10 11 12
+.fi
+.PP
+ 
 
 .SH "Author"
 .PP 

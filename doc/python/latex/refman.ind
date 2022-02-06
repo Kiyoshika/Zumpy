@@ -1,83 +1,66 @@
 \begin{theindex}
 
   \item {\_\_del\_\_}
-    \subitem {zumpy.array}, \hyperpage{12}
+    \subitem {zumpy.array}, \hyperpage{6}
   \item {\_\_getitem\_\_}
-    \subitem {zumpy.array}, \hyperpage{13}
+    \subitem {zumpy.array}, \hyperpage{6}
   \item {\_\_init\_\_}
-    \subitem {zumpy.array}, \hyperpage{12}
+    \subitem {zumpy.array}, \hyperpage{6}
   \item {\_\_repr\_\_}
-    \subitem {zumpy.array}, \hyperpage{13}
+    \subitem {zumpy.array}, \hyperpage{7}
   \item {\_\_setitem\_\_}
-    \subitem {zumpy.array}, \hyperpage{13}
+    \subitem {zumpy.array}, \hyperpage{7}
   \item {\_\_str\_\_}
-    \subitem {zumpy.array}, \hyperpage{14}
+    \subitem {zumpy.array}, \hyperpage{8}
 
   \indexspace
 
-  \item {argtypes}
-    \subitem {zumpy.array\_wrapper}, \hyperpage{20}
-  \item {arr}
-    \subitem {zumpy.array}, \hyperpage{19}
   \item {at}
-    \subitem {zumpy.array}, \hyperpage{14}
+    \subitem {zumpy.array}, \hyperpage{8}
 
   \indexspace
 
   \item {create}
-    \subitem {zumpy.array}, \hyperpage{14}
-
-  \indexspace
-
-  \item {dtype}
-    \subitem {zumpy.array}, \hyperpage{19}
+    \subitem {zumpy.array}, \hyperpage{8}
 
   \indexspace
 
   \item {fill}
-    \subitem {zumpy.array}, \hyperpage{15}
+    \subitem {zumpy.array}, \hyperpage{9}
   \item {filter}
-    \subitem {zumpy.array}, \hyperpage{15}
-
-  \indexspace
-
-  \item {restype}
-    \subitem {zumpy.array\_wrapper}, \hyperpage{20}
+    \subitem {zumpy.array}, \hyperpage{9}
 
   \indexspace
 
   \item {set}
-    \subitem {zumpy.array}, \hyperpage{16}
-  \item {shape}
-    \subitem {zumpy.array}, \hyperpage{19}
+    \subitem {zumpy.array}, \hyperpage{10}
   \item {slice}
-    \subitem {zumpy.array}, \hyperpage{17}
-  \item {src/python/zumpy.py}, \hyperpage{21}
+    \subitem {zumpy.array}, \hyperpage{11}
   \item {sum}
-    \subitem {zumpy.array}, \hyperpage{18}
+    \subitem {zumpy.array}, \hyperpage{12}
 
   \indexspace
 
-  \item {zumpy}, \hyperpage{9}
-  \item {zumpy.array}, \hyperpage{11}
-    \subitem {\_\_del\_\_}, \hyperpage{12}
-    \subitem {\_\_getitem\_\_}, \hyperpage{13}
-    \subitem {\_\_init\_\_}, \hyperpage{12}
-    \subitem {\_\_repr\_\_}, \hyperpage{13}
-    \subitem {\_\_setitem\_\_}, \hyperpage{13}
-    \subitem {\_\_str\_\_}, \hyperpage{14}
-    \subitem {arr}, \hyperpage{19}
-    \subitem {at}, \hyperpage{14}
-    \subitem {create}, \hyperpage{14}
-    \subitem {dtype}, \hyperpage{19}
-    \subitem {fill}, \hyperpage{15}
-    \subitem {filter}, \hyperpage{15}
-    \subitem {set}, \hyperpage{16}
-    \subitem {shape}, \hyperpage{19}
-    \subitem {slice}, \hyperpage{17}
-    \subitem {sum}, \hyperpage{18}
-  \item {zumpy.array\_wrapper}, \hyperpage{19}
-    \subitem {argtypes}, \hyperpage{20}
-    \subitem {restype}, \hyperpage{20}
+  \item {to\_array}
+    \subitem {zumpy.array}, \hyperpage{12}
+
+  \indexspace
+
+  \item {zumpy.array}, \hyperpage{5}
+    \subitem {\_\_del\_\_}, \hyperpage{6}
+    \subitem {\_\_getitem\_\_}, \hyperpage{6}
+    \subitem {\_\_init\_\_}, \hyperpage{6}
+    \subitem {\_\_repr\_\_}, \hyperpage{7}
+    \subitem {\_\_setitem\_\_}, \hyperpage{7}
+    \subitem {\_\_str\_\_}, \hyperpage{8}
+    \subitem {at}, \hyperpage{8}
+    \subitem {create}, \hyperpage{8}
+    \subitem {fill}, \hyperpage{9}
+    \subitem {filter}, \hyperpage{9}
+    \subitem {set}, \hyperpage{10}
+    \subitem {slice}, \hyperpage{11}
+    \subitem {sum}, \hyperpage{12}
+    \subitem {to\_array}, \hyperpage{12}
+  \item {zumpy.array\_wrapper}, \hyperpage{13}
 
 \end{theindex}

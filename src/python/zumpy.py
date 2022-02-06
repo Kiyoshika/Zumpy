@@ -47,7 +47,7 @@ _libZumpy.arr_filter.restype = None
 ## Array Module
 # A simple array class that handles arbitrary dimensions for integer and float types.
 class array():
-    def _get_type_enum(self, dtype):
+    def __get_type_enum(self, dtype):
         if dtype == 'int32':
             return 0
         elif dtype == 'float':
@@ -81,7 +81,7 @@ class array():
         shape_size = len(self.shape)
         shape_arr = (c_size_t * len(self.shape))(*self.shape)
 
-        type_enum = self._get_type_enum(self.dtype)
+        type_enum = self.__get_type_enum(self.dtype)
 
         _libZumpy.arr_init(arr_ptr, shape_arr, shape_size, type_enum)
 
@@ -569,13 +569,13 @@ class array():
     # @endcode
     #
     # Output:
+    #
+    # @code
     # Shape:  [3, 4]
     # Array:
     # 1 2 3 4
     # 5 6 7 8
     # 9 10 11 12
-    # @code
-    #
     # @endcode
     def to_array(self, list_arr, dtype = 'int32'):
         list_arr_shape = self.__get_list_shape(list_arr)
