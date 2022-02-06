@@ -1,18 +1,14 @@
 from zumpy import array
-from random import randint, seed
 
+# convert a 3x4 python list into a zumpy array
+x = [
+        [1,2,3,4],
+        [5,6,7,8],
+        [9,10,11,12]
+]
 arr = array()
-arr.create([5,2], 'int32')
+arr.to_array(x) # by default the dtype is 'int32' so no need to specify here
 
-# set seed for reproducibility
-seed(5021)
-
-# fill array with random values
-for i in range(arr.shape[0]):
-    for j in range(arr.shape[1]):
-        arr[i,j] = randint(0,50)
-
-print("Full Array:")
+print("Shape: ", arr.shape)
+print("Array:")
 print(arr)
-
-print("Sum: ", arr.sum())
