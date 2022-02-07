@@ -24,6 +24,7 @@ This file contains implementations for functions related to accessing the array;
 This file contains the implementation for the filtering algorithm.
 ### Contains:
 * arr_filter
+* arr_multi_filter
 
 ---
 

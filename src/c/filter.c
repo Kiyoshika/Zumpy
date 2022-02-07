@@ -210,3 +210,10 @@ void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, si
         free(secondary_indices);
 
 }
+
+void arr_multi_filter(array*arr, bool (**filters)(void*), size_t** secondary_indices, size_t* secondary_indices_sizes, size_t n_filters, filter_type* ftypes, array* dest)
+{
+    for (size_t i = 0; i < n_filters; ++i)
+        arr_filter(arr, filters[i], secondary_indices[i], secondary_indices_sizes[i], ftypes[i], dest);
+
+}

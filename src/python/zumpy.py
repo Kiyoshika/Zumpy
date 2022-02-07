@@ -458,6 +458,10 @@ class array():
             return None
         return ret_arr
 
+    def multi_filter(self, filter_funcs, secondary_indices, filter_types):
+        # TODO: implement this later
+        pass
+
     ## Sum all indices of an array
     # @return A float value representing the sum of all the elements
     #

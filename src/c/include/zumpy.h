@@ -542,5 +542,125 @@ typedef enum {ANY, ALL} filter_type;
  * 40 49 47
  * @endcode
  */
-void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type, array* dest);
+void arr_filter(array* arr, bool (*filter)(void*), size_t* secondary_indices, size_t secondary_indices_size, filter_type ftype, array* dest);
+
+/**
+ * Apply multiple filters to different columns simultaneously.
+ * This function is essentially a wrapper around arr_filter(array*, bool (*)(void*), size_t*, size_t, filter_type, array*);
+ * @param arr Primary array to filter
+ * @param filters A boolean array of (boolean) functions which are the filters.
+ * @param secondary_indices An array of arrays detailing which columns are applied by which filter (match the index of filters[] array)
+ * @param secondary_indices_sizes A meta-data array which contains the size of the secondary_indices[] array for each index.
+ * @param n_filters The total number of filters being applied. I.e, the size of filters[].
+ * @param ftypes An array of enums specifying the "type" of filter to apply. One of "ANY" or "ALL". For 1D arrays this has no effect. 1D arrays will just remove the values that don't match the condition regardless of which setting is used. For 2D arrays and higher, it will only keep the row if ANY of the specified columns match the condition, or if ALL values in the specified columns match the condition. See examples below for more detail.
+ * @param dest Destination array to store filtered results into. Memory will be allocated inside the function call so no need to initialize it beforehand.
+ *
+ * Example with 2D array:
+ *
+ * @code
+ * #include "include/zumpy.h"
+ * #include <time.h>
+ *
+ *
+ * bool filter_1(void* value)
+ * {
+ *     return *(int32_t*)value > 10;
+ * }
+ *
+ * bool filter_2(void* value)
+ * {
+ *     return *(int32_t*)value >= 15 && *(int32_t*)value <= 20;
+ * }
+ *
+ * int main()
+ * {
+ *     // initialize 10x3 array
+ *     size_t shape[] = {10, 3};
+ *     array arr;
+ *     arr_init(&arr, shape, 2, INT32);
+ *
+ *     // fill array with crude random values between 0-49
+ *     int32_t val;
+ *     size_t idx[] = {0, 0};
+ *     srand(3331); // specific seed for reproducibility
+ *     for (size_t r = 0; r < arr.arr_shape[0]; ++r)
+ *     {
+ *         idx[0] = r;
+ *         for (size_t c = 0; c < arr.arr_shape[1]; ++c)
+ *         {
+ *             idx[1] = c;
+ *             val = rand() % 50;
+ *             arr_set(&arr, idx, &val);
+ *         }
+ *     }
+ *
+ *     printf("BEFORE FILTERING:\n======================\n");
+ *     arr_print(&arr);
+ *     printf("\n");
+ *
+ *     // it's best to initialize data to NULL to avoid uninitialized errors
+ *     array filtered = {.data = NULL};
+ *
+ *     // which columns to apply filter_1
+ *     size_t secondary_idx_1[] = {0,2};
+ *
+ *     // which columns to apply filter_2
+ *     size_t secondary_idx_2[] = {1};
+ *
+ *     // wrap them in an array
+ *     size_t* secondary_idx[] = {secondary_idx_1, secondary_idx_2};
+ *
+ *     // provide meta data about the sizes
+ *     size_t secondary_idx_sizes[] = {2, 1};
+ *
+ *     // wrap filters in a bool array
+ *     // note: I think this syntax gives a compiler warning but still works for sake of example.
+ *     // alternatively you can malloc a double function pointer and manually assign the indices that way.
+ *     bool* filters[] = { filter_1, filter_2 };
+ *
+ *     // array of filter types for each filter.
+ *     // we'll make both ANY in this case.
+ *     filter_type ftypes[] = {ANY, ANY};
+ *
+ *     // this filter checks if ALL columns in the third dimension are > 10 for column 0 and 2
+ *     arr_multi_filter(&arr, &filters, secondary_idx, secondary_idx_sizes, 2, ftypes, &filtered);
+ *
+ *     printf("AFTER FILTERING:\n======================\n");
+ *     arr_print(&filtered);
+ *
+ *     // deallocate
+ *     arr_free(&arr);
+ *     arr_free(&filtered);
+ *
+ *     return 0;
+ * }
+ * @endcode
+ *
+ * Output:
+ *
+ * @code
+ * BEFORE FILTERING:
+ * ======================
+ * 43 8 25
+ * 26 13 44
+ * 11 44 27
+ * 26 20 40
+ * 44 19 17
+ * 40 49 47
+ * 46 20 38
+ * 41 18 16
+ * 31 12 1
+ * 13 2 42
+ *
+ * AFTER FILTERING:
+ * ======================
+ * 26 20 40
+ * 44 19 17
+ * 46 20 38
+ * 41 18 16
+ * @endcode
+ *
+ * You can see that column 0 and column 2 filters were applied, then we checked the column 1 filter to produce final result set.
+ */
+void arr_multi_filter(array*arr, bool (**filters)(void*), size_t** secondary_indices, size_t* secondary_indices_sizes, size_t n_filters, filter_type* ftypes, array* dest);
 #endif //ZUMPY_ZUMPY_H
